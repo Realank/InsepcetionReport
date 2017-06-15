@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController">
+            <connections>
+                <outlet property="genBtn" destination="L6K-Wt-SKx" id="DpM-bo-PCc"/>
+                <outlet property="hisBtn" destination="CQn-84-rQN" id="zoI-LN-6a9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6K-Wt-SKx">
+                    <rect key="frame" x="37.5" y="306.5" width="300" height="100"/>
+                    <color key="backgroundColor" red="0.1740702093" green="0.52312773469999996" blue="0.93836706879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="生成">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="generateNewFile:" destination="-1" eventType="touchUpInside" id="kVx-HE-Qb6"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered By Realank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6Y-Cf-4WS">
+                    <rect key="frame" x="110" y="626" width="155" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQn-84-rQN">
+                    <rect key="frame" x="37.5" y="183.5" width="300" height="100"/>
+                    <color key="backgroundColor" red="0.1740702093" green="0.52312773469999996" blue="0.93836706879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="IDy-7h-3G9"/>
+                        <constraint firstAttribute="height" constant="100" id="Qac-Lp-9Qd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="历史">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showHistoryPage:" destination="-1" eventType="touchUpInside" id="Fxa-tu-CXI"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="L6K-Wt-SKx" firstAttribute="top" secondItem="CQn-84-rQN" secondAttribute="bottom" constant="23" id="7Gs-0S-ZTZ"/>
+                <constraint firstItem="CQn-84-rQN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CyL-id-aSM"/>
+                <constraint firstItem="L6K-Wt-SKx" firstAttribute="centerX" secondItem="CQn-84-rQN" secondAttribute="centerX" id="TWO-va-aoW"/>
+                <constraint firstItem="CQn-84-rQN" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="UvY-7z-Xuf"/>
+                <constraint firstItem="CQn-84-rQN" firstAttribute="width" secondItem="L6K-Wt-SKx" secondAttribute="width" id="WdX-Rg-Xak"/>
+                <constraint firstAttribute="bottom" secondItem="p6Y-Cf-4WS" secondAttribute="bottom" constant="20" id="ZK1-Pr-PLo"/>
+                <constraint firstItem="p6Y-Cf-4WS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bgZ-NN-UkZ"/>
+                <constraint firstItem="CQn-84-rQN" firstAttribute="height" secondItem="L6K-Wt-SKx" secondAttribute="height" id="v1J-14-zTk"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
