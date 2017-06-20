@@ -24,7 +24,9 @@
     item.enabled = YES;
     [self.navigationItem setRightBarButtonItem:item];
     _item = item;
-    
+    _irWebView.scalesPageToFit=YES;
+    _irWebView.multipleTouchEnabled=YES;
+    _irWebView.userInteractionEnabled=YES;
     NSURL *url = [NSURL fileURLWithPath:_filePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_irWebView loadRequest:request];

@@ -163,7 +163,7 @@
 }
 
 - (CGRect)frameForImagePath:(NSString*)imagePath{
-    CGFloat maxWidth = 245;
+    CGFloat maxWidth = 246;
     CGFloat maxHeight = 140;
     UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
     if (!image) {

@@ -25,7 +25,7 @@
     
     [self updateTableViewHeaderText];
     self.tableView.sectionHeaderHeight = 25;
-    self.title = @"生成文件";
+    self.title = @"编辑";
     
     UIBarButtonItem* resetItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     [self.navigationItem setLeftBarButtonItem:resetItem];
