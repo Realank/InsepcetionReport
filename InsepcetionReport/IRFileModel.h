@@ -34,8 +34,10 @@ typedef enum : NSUInteger {
 
 @interface IRFileModel : NSObject
 
-@property (nonatomic, copy) NSString* fileName;
+@property (nonatomic, copy) NSString* fileId;
+@property (nonatomic, strong) NSDate* updateDate;
 
+@property (nonatomic, copy) NSString* fileName;
 @property (nonatomic, copy) NSString* dateString;
 @property (nonatomic, copy) NSString* supplier;
 @property (nonatomic, copy) NSString* poNumber;
@@ -52,17 +54,22 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) NSString* assemblyInstructionImageUrl;
 @property (nonatomic, copy) NSString* sparePartsImageUrl;
 
-@property (nonatomic, copy) NSMutableArray* frontViewImageUrls;
-@property (nonatomic, copy) NSMutableArray* sideViewImageUrls;
-@property (nonatomic, copy) NSMutableArray* backViewImageUrls;
-@property (nonatomic, copy) NSMutableArray* legViewImageUrls;
+@property (nonatomic, strong) NSMutableArray* frontViewImageUrls;
+@property (nonatomic, strong) NSMutableArray* sideViewImageUrls;
+@property (nonatomic, strong) NSMutableArray* backViewImageUrls;
+@property (nonatomic, strong) NSMutableArray* legViewImageUrls;
 
-@property (nonatomic, copy) NSMutableArray* packageImageUrls;
-@property (nonatomic, copy) NSMutableArray* sparePartsPackageImageUrls;
-@property (nonatomic, copy) NSMutableArray* extraSparePartsPackageImageUrls;
+@property (nonatomic, strong) NSMutableArray* packageImageUrls;
+@property (nonatomic, strong) NSMutableArray* sparePartsPackageImageUrls;
+@property (nonatomic, strong) NSMutableArray* extraSparePartsPackageImageUrls;
 
 
 
 - (instancetype)initWithFileName:(NSString*)fileName;
 - (NSString*)generateFile;
+
+- (NSString*)draftRootDir;
+- (void)saveDraft;
++ (NSArray*)loadDraftModels;
+- (void)deleteDraft;
 @end

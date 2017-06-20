@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Deemo报告";
+    self.title = @"Deemo报告2";
     [self configCorner:_hisBtn];
     [self configCorner:_genBtn];
 }

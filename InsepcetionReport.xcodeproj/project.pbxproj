@@ -11,7 +11,6 @@
 		8C094C1C1EF0CDC700118A91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C094C1B1EF0CDC700118A91 /* AppDelegate.m */; };
 		8C094C241EF0CDC700118A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C094C231EF0CDC700118A91 /* Assets.xcassets */; };
 		8C094C271EF0CDC700118A91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C094C251EF0CDC700118A91 /* LaunchScreen.storyboard */; };
-		8C094C331EF0DD9000118A91 /* LibXL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C094C321EF0DD9000118A91 /* LibXL.framework */; };
 		8C094C371EF0DF3900118A91 /* NSDate+Realank.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C094C361EF0DF3900118A91 /* NSDate+Realank.m */; };
 		8C094C3B1EF0E08500118A91 /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C094C391EF0E08500118A91 /* DetailTableViewController.m */; };
 		8C094C3C1EF0E08500118A91 /* DetailTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C094C3A1EF0E08500118A91 /* DetailTableViewController.xib */; };
@@ -30,6 +29,7 @@
 		8C269DDF1EF24C79004DE418 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C269DDD1EF24C79004DE418 /* HomeViewController.xib */; };
 		8C269DE51EF24DCB004DE418 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C269DE31EF24DCB004DE418 /* HistoryViewController.m */; };
 		8C269DE61EF24DCB004DE418 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C269DE41EF24DCB004DE418 /* HistoryViewController.xib */; };
+		8C2C06E81EF8A9A7001798F8 /* LibXL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2C06E71EF8A9A7001798F8 /* LibXL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,6 @@
 		8C094C231EF0CDC700118A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C094C261EF0CDC700118A91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C094C281EF0CDC700118A91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8C094C321EF0DD9000118A91 /* LibXL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LibXL.framework; sourceTree = "<group>"; };
 		8C094C351EF0DF3900118A91 /* NSDate+Realank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Realank.h"; sourceTree = "<group>"; };
 		8C094C361EF0DF3900118A91 /* NSDate+Realank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Realank.m"; sourceTree = "<group>"; };
 		8C094C381EF0E08500118A91 /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
@@ -51,9 +50,9 @@
 		8C094C461EF0EFCB00118A91 /* IRInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRInputCell.h; sourceTree = "<group>"; };
 		8C094C471EF0EFCB00118A91 /* IRInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRInputCell.m; sourceTree = "<group>"; };
 		8C094C481EF0EFCB00118A91 /* IRInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IRInputCell.xib; sourceTree = "<group>"; };
-		8C094C4B1EF0EFDC00118A91 /* IRImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRImageCell.h; path = IRImageCell.h; sourceTree = "<group>"; };
-		8C094C4C1EF0EFDC00118A91 /* IRImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IRImageCell.m; path = IRImageCell.m; sourceTree = "<group>"; };
-		8C094C4D1EF0EFDC00118A91 /* IRImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IRImageCell.xib; path = IRImageCell.xib; sourceTree = "<group>"; };
+		8C094C4B1EF0EFDC00118A91 /* IRImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRImageCell.h; sourceTree = "<group>"; };
+		8C094C4C1EF0EFDC00118A91 /* IRImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRImageCell.m; sourceTree = "<group>"; };
+		8C094C4D1EF0EFDC00118A91 /* IRImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IRImageCell.xib; sourceTree = "<group>"; };
 		8C094C501EF0EFF100118A91 /* IRAddActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRAddActionCell.h; sourceTree = "<group>"; };
 		8C094C511EF0EFF100118A91 /* IRAddActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRAddActionCell.m; sourceTree = "<group>"; };
 		8C094C521EF0EFF100118A91 /* IRAddActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IRAddActionCell.xib; sourceTree = "<group>"; };
@@ -69,6 +68,8 @@
 		8C269DE21EF24DCB004DE418 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		8C269DE31EF24DCB004DE418 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		8C269DE41EF24DCB004DE418 /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		8C2C06E21EF8A74D001798F8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		8C2C06E71EF8A9A7001798F8 /* LibXL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LibXL.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C094C331EF0DD9000118A91 /* LibXL.framework in Frameworks */,
+				8C2C06E81EF8A9A7001798F8 /* LibXL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,14 +120,14 @@
 		8C094C171EF0CDC700118A91 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8C2C06E71EF8A9A7001798F8 /* LibXL.framework */,
 				8C094C231EF0CDC700118A91 /* Assets.xcassets */,
 				8C094C281EF0CDC700118A91 /* Info.plist */,
 				8C094C251EF0CDC700118A91 /* LaunchScreen.storyboard */,
-				8C094C321EF0DD9000118A91 /* LibXL.framework */,
 				8C094C181EF0CDC700118A91 /* main.m */,
 				8C269DD81EF20629004DE418 /* template.xlsx */,
+				8C2C06E21EF8A74D001798F8 /* PrefixHeader.pch */,
 			);
-			name = "Supporting Files";
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
@@ -136,7 +137,6 @@
 				8C094C351EF0DF3900118A91 /* NSDate+Realank.h */,
 				8C094C361EF0DF3900118A91 /* NSDate+Realank.m */,
 			);
-			name = Utils;
 			path = Utils;
 			sourceTree = "<group>";
 		};
@@ -147,7 +147,6 @@
 				8C269DDC1EF24C79004DE418 /* HomeViewController.m */,
 				8C269DDD1EF24C79004DE418 /* HomeViewController.xib */,
 			);
-			name = Home;
 			path = Home;
 			sourceTree = "<group>";
 		};
@@ -169,7 +168,6 @@
 				8C094C551EF0F03A00118A91 /* RLKBaseTableViewCell.h */,
 				8C094C561EF0F03A00118A91 /* RLKBaseTableViewCell.m */,
 			);
-			name = Detail;
 			path = Detail;
 			sourceTree = "<group>";
 		};
@@ -180,7 +178,6 @@
 				8C269DE31EF24DCB004DE418 /* HistoryViewController.m */,
 				8C269DE41EF24DCB004DE418 /* HistoryViewController.xib */,
 			);
-			name = History;
 			path = History;
 			sourceTree = "<group>";
 		};
@@ -191,7 +188,6 @@
 				8C269DD41EF20447004DE418 /* PreviewViewController.m */,
 				8C269DD51EF20447004DE418 /* PreviewViewController.xib */,
 			);
-			name = Preview;
 			path = Preview;
 			sourceTree = "<group>";
 		};
@@ -226,7 +222,7 @@
 				TargetAttributes = {
 					8C094C131EF0CDC700118A91 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 275X96KVEB;
+						DevelopmentTeam = 3Q553VZ29W;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -400,16 +396,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 275X96KVEB;
+				DEVELOPMENT_TEAM = 3Q553VZ29W;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/InsepcetionReport",
+					"$(PROJECT_DIR)/InsepcetionReport/Supporting\\ Files",
+					"$(PROJECT_DIR)/InsepcetionReport/Supporting\\ Files",
+					"$(PROJECT_DIR)/InsepcetionReport/Supporting\\ Files",
+					"$(PROJECT_DIR)/InsepcetionReport/Supporting\\ Files",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/InsepcetionReport/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "InsepcetionReport/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lstdc++";
-				PRODUCT_BUNDLE_IDENTIFIER = com.realank.InsepcetionReport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihealth.nurseapp.report2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -418,16 +419,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 275X96KVEB;
+				DEVELOPMENT_TEAM = 3Q553VZ29W;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/InsepcetionReport",
+					"$(PROJECT_DIR)/InsepcetionReport/Supporting\\ Files",
+					"$(PROJECT_DIR)/InsepcetionReport/Supporting\\ Files",
+					"$(PROJECT_DIR)/InsepcetionReport/Supporting\\ Files",
+					"$(PROJECT_DIR)/InsepcetionReport/Supporting\\ Files",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/InsepcetionReport/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "InsepcetionReport/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lstdc++";
-				PRODUCT_BUNDLE_IDENTIFIER = com.realank.InsepcetionReport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihealth.nurseapp.report2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

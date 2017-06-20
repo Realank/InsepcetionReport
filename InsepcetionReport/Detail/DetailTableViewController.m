@@ -10,7 +10,6 @@
 #import "IRInputCell.h"
 #import "IRImageCell.h"
 #import "IRAddActionCell.h"
-#import "NSDate+Realank.h"
 #import <AVFoundation/AVFoundation.h>
 #import "PreviewViewController.h"
 @interface DetailTableViewController ()<IRCellInputChanged, UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -35,20 +34,21 @@
 
 - (void)back{
     
-    __weak typeof(self) weakSelf = self;
-    UIAlertController* vc = [UIAlertController alertControllerWithTitle:@"返回将丢失数据" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        weakSelf.fileModel = nil;
-        //    [self updateTableViewHeaderText];
-        //    [self.tableView reloadData];
-        [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
-    }];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [vc addAction:confirmAction];
-    [vc addAction:cancelAction];
-    [self.navigationController presentViewController:vc animated:YES completion:nil];
+//    __weak typeof(self) weakSelf = self;
+//    UIAlertController* vc = [UIAlertController alertControllerWithTitle:@"返回将丢失数据" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction* confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        weakSelf.fileModel = nil;
+//        //    [self updateTableViewHeaderText];
+//        //    [self.tableView reloadData];
+//        [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
+//    }];
+//    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    [vc addAction:confirmAction];
+//    [vc addAction:cancelAction];
+    [_fileModel saveDraft];
+    [self.navigationController popViewControllerAnimated:YES];
     
 
 }
@@ -89,6 +89,7 @@
         }
         NSString* fileName = [tf.text stringByAppendingPathExtension:@"xlsx"];
         weakSelf.fileModel.fileName = fileName;
+        [weakSelf.fileModel saveDraft];
         PreviewViewController* vc = [[PreviewViewController alloc] init];
         vc.filePath = [_fileModel generateFile];
         [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -361,7 +362,8 @@
         
         if (isImageCell) {
             cell = [IRImageCell cellWithTableView:tableView];
-            ((IRImageCell*)cell).imageUrl = content;
+            NSString* imagePath = [[_fileModel draftRootDir] stringByAppendingPathComponent:content];
+            ((IRImageCell*)cell).imageUrl = imagePath;
         }else{
             cell = [IRAddActionCell cellWithTableView:tableView];
         }
@@ -424,6 +426,61 @@
         _selectImageType = indexPath.section;
         [self showImageSelectionPage];
     }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self cellTypeForIndexPath:indexPath] == IRCellTypeImage) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle != UITableViewCellEditingStyleDelete) {
+        return;
+    }
+    NSInteger row = indexPath.row;
+    IRContentType type = indexPath.section;
+            
+    if(type == IRContentFrontMarkImageUrl){
+        _fileModel.frontMarkImageUrl = nil;
+    }else if(type == IRContentSideMarkImageUrl){
+        _fileModel.sideMarkImageUrl = nil;
+    }else if(type == IRContentAssemblyInstructionImageUrl){
+        _fileModel.assemblyInstructionImageUrl = nil;
+    }else if(type == IRContentSparePartsImageUrl){
+        _fileModel.sparePartsImageUrl = nil;
+    }else if(type == IRContentFrontViewImageUrl){
+        if (_fileModel.frontViewImageUrls.count > row) {
+            [_fileModel.frontViewImageUrls removeObjectAtIndex:row];
+        }
+    }else if(type == IRContentSideViewImageUrl){
+        if (_fileModel.sideViewImageUrls.count > row) {
+            [_fileModel.sideViewImageUrls removeObjectAtIndex:row];
+        }
+    }else if(type == IRContentBackViewImageUrl){
+        if (_fileModel.backViewImageUrls.count > row) {
+            [_fileModel.backViewImageUrls removeObjectAtIndex:row];
+        }
+    }else if(type == IRContentLegViewImageUrl){
+        if (_fileModel.legViewImageUrls.count > row) {
+            [_fileModel.legViewImageUrls removeObjectAtIndex:row];
+        }
+    }else if(type == IRContentPackageImageUrl){
+        if (_fileModel.packageImageUrls.count > row) {
+            [_fileModel.packageImageUrls removeObjectAtIndex:row];
+        }
+    }else if(type == IRContentSparePartsPackageImageUrl){
+        
+        if (_fileModel.sparePartsPackageImageUrls.count > row) {
+            [_fileModel.sparePartsPackageImageUrls removeObjectAtIndex:row];
+        }
+    }else if(type == IRContentExtraSparePartsPackageImageUrl){
+        if (_fileModel.extraSparePartsPackageImageUrls.count > row) {
+            [_fileModel.extraSparePartsPackageImageUrls removeObjectAtIndex:row];
+        }
+    }
+    [self.tableView reloadData];
 }
 
 - (void)showImageSelectionPage{
@@ -556,42 +613,42 @@
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     
     NSString* fileName = [NSString stringWithFormat:@"image%@-%05d.png",[[NSDate date] M_d_DateString],arc4random()%100000];
-    NSString* filePath = [[self tmpDirectory] stringByAppendingString:fileName];
+    NSString* filePath = [[_fileModel draftRootDir] stringByAppendingPathComponent:fileName];
     NSData* imgData = UIImagePNGRepresentation(image);
     [imgData writeToFile:filePath options:NSDataWritingAtomic error:nil];
     switch (_selectImageType) {
         case IRContentFrontMarkImageUrl:
-            _fileModel.frontMarkImageUrl = filePath;
+            _fileModel.frontMarkImageUrl = fileName;
             break;
         case IRContentSideMarkImageUrl:
-            _fileModel.sideMarkImageUrl = filePath;
+            _fileModel.sideMarkImageUrl = fileName;
             break;
         case IRContentAssemblyInstructionImageUrl:
-            _fileModel.assemblyInstructionImageUrl = filePath;
+            _fileModel.assemblyInstructionImageUrl = fileName;
             break;
         case IRContentSparePartsImageUrl:
-            _fileModel.sparePartsImageUrl = filePath;
+            _fileModel.sparePartsImageUrl = fileName;
             break;
         case IRContentFrontViewImageUrl://front view
-            [_fileModel.frontViewImageUrls addObject:filePath];
+            [_fileModel.frontViewImageUrls addObject:fileName];
             break;
         case IRContentSideViewImageUrl://side view
-            [_fileModel.sideViewImageUrls addObject:filePath];
+            [_fileModel.sideViewImageUrls addObject:fileName];
             break;
         case IRContentBackViewImageUrl://back view
-            [_fileModel.backViewImageUrls addObject:filePath];
+            [_fileModel.backViewImageUrls addObject:fileName];
             break;
         case IRContentLegViewImageUrl://leg view
-            [_fileModel.legViewImageUrls addObject:filePath];
+            [_fileModel.legViewImageUrls addObject:fileName];
             break;
         case IRContentPackageImageUrl://package view
-            [_fileModel.packageImageUrls addObject:filePath];
+            [_fileModel.packageImageUrls addObject:fileName];
             break;
         case IRContentSparePartsPackageImageUrl://spare parts
-            [_fileModel.sparePartsPackageImageUrls addObject:filePath];
+            [_fileModel.sparePartsPackageImageUrls addObject:fileName];
             break;
         case IRContentExtraSparePartsPackageImageUrl://extra spare parts
-            [_fileModel.extraSparePartsPackageImageUrls addObject:filePath];
+            [_fileModel.extraSparePartsPackageImageUrls addObject:fileName];
             break;
         default:
             break;

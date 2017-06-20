@@ -7,13 +7,14 @@
 //
 
 #import "IRFileModel.h"
-#import "NSDate+Realank.h"
-#import <LibXL/LibXL.h>
 @implementation IRFileModel
 
 - (instancetype)init{
     if (self = [super init]) {
-        _dateString = [[NSDate date] Y_M_d_DateString];
+        NSDate* date = [NSDate date];
+        _fileId = [NSString stringWithFormat:@"Draft-%@-%04d",[date M_d_DateString],arc4random()%10000];
+        _updateDate = date;
+        _dateString = [date Y_M_d_DateString];
         _supplier = @"Hetai Furnitrue";
         _checkCharger = @"DEEMO";
         
@@ -36,7 +37,22 @@
     return self;
 }
 
+- (NSString*)excelDir{
+    NSString* excelDir = [[IRFileModel documentDir] stringByAppendingPathComponent:@"ExcelExport"];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    if (![fm fileExistsAtPath:excelDir]) {
+        [fm createDirectoryAtPath:excelDir withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    return excelDir;
+}
+
 - (NSString*)generateFile{
+    //clear excel files
+    NSString* excelDir = [self excelDir];
+    for (NSString* fileName in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:excelDir error:nil]) {
+        NSString* filePath = [excelDir stringByAppendingPathComponent:fileName];
+        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+    }
     // 创建excel文件,表格的格式是xls,如果要创建xlsx表格,需要用xlCreateXMLBook()创建
     BookHandle book = xlCreateXMLBook();
     NSInteger ret = xlBookLoad(book, [[[NSBundle mainBundle] pathForResource:@"template.xlsx" ofType:nil]  UTF8String]);
@@ -120,8 +136,7 @@
     }
     
     // 先写入沙盒
-    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject];
-    NSString *filePath = [documentPath stringByAppendingPathComponent:self.fileName];
+    NSString *filePath = [excelDir stringByAppendingPathComponent:self.fileName];
     
     // 保存表格
     xlBookSave(book, [filePath UTF8String]);
@@ -144,9 +159,169 @@
     if (imageUrl.length == 0 || sheet == NULL) {
         return;
     }
-    int picId = xlBookAddPicture(book, [imageUrl UTF8String]);
+    
+    int picId = xlBookAddPicture(book, [[[self draftRootDir] stringByAppendingPathComponent:imageUrl] UTF8String]);
     xlSheetSetPicture2A(sheet, row, col, picId, 140, 140, 60, 3, 0);
     //    xlSheetSetPictureA(sheet, row, col, picId, 1, 2, 2, 0);;
+}
+
+#pragma mark - draft
+
++ (NSString*)documentDir{
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject];
+    return documentPath;
+}
++ (NSString*)draftFilesRootDirectory{
+    NSString* docDir = [self documentDir];
+    NSString* rootDir = [docDir stringByAppendingPathComponent:@"DraftFiles"];
+    return rootDir;
+}
+- (NSString*)draftRootDir{
+    NSString* draftRootPath = [[IRFileModel draftFilesRootDirectory] stringByAppendingPathComponent:_fileId];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    if (![fm fileExistsAtPath:draftRootPath]) {
+        [fm createDirectoryAtPath:draftRootPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    return draftRootPath;
+}
+
+- (NSString*)formatString:(NSString*)string{
+    return string.length ? string : @"";
+}
+
+- (NSDictionary*)toDict{
+    return @{
+             @"fileId" : [self formatString:_fileId],
+             @"updateDate": _updateDate,
+             @"fileName" : [self formatString:_fileName],
+             
+             @"dateString" : [self formatString:_dateString],
+             @"supplier" : [self formatString:_supplier],
+             @"poNumber" : [self formatString:_poNumber],
+             @"checkCharger" : [self formatString:_checkCharger],
+             
+             @"itemNum" : [self formatString:_itemNum],
+             @"color": [self formatString:_color],
+             @"orderQuantity" : [self formatString:_orderQuantity],
+             @"finishedQuantity" : [self formatString:_finishedQuantity],
+             @"inspectedQuantity" : [self formatString:_inspectedQuantity],
+             
+             @"frontMarkImageUrl" : [self formatString:_frontMarkImageUrl],
+             @"sideMarkImageUrl" : [self formatString:_sideMarkImageUrl],
+             @"assemblyInstructionImageUrl" : [self formatString:_assemblyInstructionImageUrl],
+             @"sparePartsImageUrl" : [self formatString:_sparePartsImageUrl],
+             
+             @"frontViewImageUrls" : [_frontViewImageUrls copy],
+             @"sideViewImageUrls" : [_sideViewImageUrls copy],
+             @"backViewImageUrls" : [_backViewImageUrls copy],
+             @"legViewImageUrls" : [_legViewImageUrls copy],
+                 
+             @"packageImageUrls" : [_packageImageUrls copy],
+             @"sparePartsPackageImageUrls" : [_sparePartsPackageImageUrls copy],
+             @"extraSparePartsPackageImageUrls" : [_extraSparePartsPackageImageUrls copy],
+                 };
+}
+
+- (void)saveDraft{
+    _updateDate = [NSDate date];
+    NSString* draftRootPath = [self draftRootDir];
+    NSString* plistFilePath = [draftRootPath stringByAppendingPathComponent:@"properties.plist"];
+    NSDictionary* dict = [self toDict];
+    if (![dict writeToFile:plistFilePath atomically:YES]) {
+        NSLog(@"保存失败");
+    }
+    
+}
+
+- (NSString*)filtFileUrl:(NSString*)fileUrl{
+    if (fileUrl.length == 0) {
+        return nil;
+    }
+    NSString* filePath = [[self draftRootDir] stringByAppendingPathComponent:fileUrl];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        return fileUrl;
+    }
+    return nil;
+}
+
+- (NSMutableArray*)filtUrlsFromArray:(NSArray*)urlArray{
+    NSMutableArray* filteredUrls = [NSMutableArray array];
+    for (NSString* fileUrl in urlArray) {
+        if ([self filtFileUrl:fileUrl]) {
+            [filteredUrls addObject:fileUrl];
+        }
+    }
+    return filteredUrls;
+}
+
++ (instancetype)modelFromDict:(NSDictionary*)dict{
+    if (dict.allKeys.count == 0) {
+        return nil;
+    }
+    IRFileModel* model = [[IRFileModel alloc] init];
+    model.fileId = dict[@"fileId"];
+    model.updateDate = dict[@"updateDate"];
+    
+    model.fileName = dict[@"fileName"];
+    model.dateString = dict[@"dateString"];
+    model.supplier = dict[@"supplier"];
+    model.poNumber = dict[@"poNumber"];
+    model.checkCharger = dict[@"checkCharger"];
+    
+    model.itemNum = dict[@"itemNum"];
+    model.color = dict[@"color"];
+    model.orderQuantity = dict[@"orderQuantity"];
+    model.finishedQuantity = dict[@"finishedQuantity"];
+    model.inspectedQuantity = dict[@"inspectedQuantity"];
+    
+    model.frontMarkImageUrl = [model filtFileUrl:dict[@"frontMarkImageUrl"]];
+    model.sideMarkImageUrl = [model filtFileUrl:dict[@"sideMarkImageUrl"]];
+    model.assemblyInstructionImageUrl = [model filtFileUrl:dict[@"assemblyInstructionImageUrl"]];
+    model.sparePartsImageUrl = [model filtFileUrl:dict[@"sparePartsImageUrl"]];
+    
+    model.frontViewImageUrls = [model filtUrlsFromArray:dict[@"frontViewImageUrls"]];
+    model.sideViewImageUrls = [model filtUrlsFromArray:dict[@"sideViewImageUrls"]];
+    model.backViewImageUrls = [model filtUrlsFromArray:dict[@"backViewImageUrls"]];
+    model.legViewImageUrls = [model filtUrlsFromArray:dict[@"legViewImageUrls"]];
+    
+    model.packageImageUrls = [model filtUrlsFromArray:dict[@"packageImageUrls"]];
+    model.sparePartsPackageImageUrls = [model filtUrlsFromArray:dict[@"sparePartsPackageImageUrls"]];
+    model.extraSparePartsPackageImageUrls = [model filtUrlsFromArray:dict[@"extraSparePartsPackageImageUrls"]];
+    
+    return model;
+}
+
++ (NSArray*)loadDraftModels{
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSString* draftFilesRootDir = [self draftFilesRootDirectory];
+    NSArray* draftsFiles = [fm contentsOfDirectoryAtPath:draftFilesRootDir error:nil];
+    NSMutableArray* draftModels = [NSMutableArray array];
+    for (NSString* draftDirName in draftsFiles) {
+        if ([draftDirName hasPrefix:@"Draft-"]) {
+            NSString* dirPath = [draftFilesRootDir stringByAppendingPathComponent:draftDirName];
+            NSString* plistFilePath = [dirPath stringByAppendingPathComponent:@"properties.plist"];
+            BOOL isDir = NO;
+            BOOL fileExist = [fm fileExistsAtPath:plistFilePath isDirectory:&isDir];
+            if (fileExist && !isDir) {
+                NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:plistFilePath];
+                IRFileModel* model = [IRFileModel modelFromDict:dict];
+                if (model) {
+                    [draftModels addObject:model];
+                }
+                
+            }
+        }
+    }
+    NSArray* sortedData = [draftModels sortedArrayUsingComparator:^NSComparisonResult(IRFileModel*  _Nonnull obj1, IRFileModel*  _Nonnull obj2) {
+        return [obj1.updateDate timeIntervalSinceDate:obj2.updateDate] < 0;
+    }];
+    return [sortedData copy];
+}
+
+- (void)deleteDraft{
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSString* draftRootDir = [self draftRootDir];
+    [fm removeItemAtPath:draftRootDir error:nil];
 }
 
 @end

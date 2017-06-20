@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IRFileModel.h"
 
 typedef enum : NSUInteger {
     IRCellTypeInput,

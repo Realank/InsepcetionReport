@@ -8,9 +8,10 @@
 
 #import "HistoryViewController.h"
 #import "PreviewViewController.h"
+#import "DetailTableViewController.h"
 @interface HistoryViewController ()
 
-@property (nonatomic, strong) NSMutableArray* filesArray;
+@property (nonatomic, strong) NSArray* modelsArray;
 
 @end
 
@@ -18,30 +19,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"历史文件";
+    self.title = @"草稿";
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self reloadData];
 }
 
 - (void)reloadData{
-    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject];
-    NSArray* files = [[NSFileManager defaultManager] subpathsAtPath:documentPath];
-    _filesArray = [NSMutableArray array];
-    for (NSString* fileName in files) {
-        if ([fileName hasSuffix:@".xlsx"]) {
-            [_filesArray addObject:fileName];
-        }
-    }
+    _modelsArray = [[IRFileModel loadDraftModels] copy];
     [self.tableView reloadData];
 }
 
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _filesArray.count;
+    if (section == 0) {
+        return 1;
+    }
+    return _modelsArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -50,11 +51,23 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"hisCell"];
     
-    NSString* filename = _filesArray[indexPath.row];
-    cell.textLabel.text = filename;
-    cell.textLabel.font = [UIFont systemFontOfSize:13];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"hisCell"];
+    if (indexPath.section == 0) {
+        cell.textLabel.text = @"创建";
+        cell.detailTextLabel.text = @"新草稿";
+    }else{
+        IRFileModel* model = _modelsArray[indexPath.row];
+        cell.textLabel.text = model.fileName;
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM-dd HH:mm"];
+        cell.detailTextLabel.text = [dateFormatter stringFromDate:model.updateDate];
+        
+    }
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+//    cell.textLabel.textColor = [UIColor blueColor];
+    cell.detailTextLabel.textColor = [UIColor grayColor];
     return cell;
 }
 
@@ -63,6 +76,9 @@
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
+    if (indexPath.section == 0) {
+        return NO;
+    }
     return YES;
 }
 
@@ -72,13 +88,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        NSString* fileName = _filesArray[indexPath.row];
-        NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject];
-        NSString* filePath = [documentPath stringByAppendingPathComponent:fileName];
+        IRFileModel* model = _modelsArray[indexPath.row];
         __weak typeof(self) weakSelf = self;
-        UIAlertController* vc = [UIAlertController alertControllerWithTitle:@"删除文件？" message:fileName preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController* vc = [UIAlertController alertControllerWithTitle:@"删除文件？" message:model.fileName preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+            [model deleteDraft];
             [weakSelf reloadData];
         }];
         UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -101,11 +115,13 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString* fileName = _filesArray[indexPath.row];
-    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject];
-    NSString* filePath = [documentPath stringByAppendingPathComponent:fileName];
-    PreviewViewController* vc = [[PreviewViewController alloc] init];
-    vc.filePath = filePath;
+    
+    IRFileModel* model = nil;
+    if (indexPath.section == 1) {
+        model = _modelsArray[indexPath.row];
+    }
+    DetailTableViewController *vc = [[DetailTableViewController alloc] init];
+    vc.fileModel = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

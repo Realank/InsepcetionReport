@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IRFileModel.h"
+
 @interface DetailTableViewController : UITableViewController
 
 @property (nonatomic, strong) IRFileModel* fileModel;
