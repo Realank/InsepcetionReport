@@ -26,7 +26,7 @@
 
 - (void)setImageUrl:(NSString *)imageUrl{
     if (imageUrl.length) {
-        _picView.image = [UIImage imageNamed:imageUrl];
+        _picView.image = [UIImage imageWithContentsOfFile:imageUrl];
     }
 }
 

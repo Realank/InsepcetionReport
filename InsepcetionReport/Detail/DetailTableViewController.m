@@ -12,8 +12,10 @@
 #import "IRAddActionCell.h"
 #import <AVFoundation/AVFoundation.h>
 #import "PreviewViewController.h"
-@interface DetailTableViewController ()<IRCellInputChanged, UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "GKImagePicker.h"
+@interface DetailTableViewController ()<IRCellInputChanged, UIImagePickerControllerDelegate,UINavigationControllerDelegate,GKImagePickerDelegate>
 @property (nonatomic, assign) IRContentType selectImageType;
+@property (nonatomic, strong) GKImagePicker *imagePicker;
 @end
 
 @implementation DetailTableViewController
@@ -503,23 +505,66 @@
 
 -(void)takeImageWithSourceType:(UIImagePickerControllerSourceType)type
 {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    if ([UIImagePickerController isSourceTypeAvailable:type])
     {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        //设置拍照后的图片可被编辑
-        picker.allowsEditing = YES;
-        picker.sourceType = type;
+        GKImagePicker* imagePicker = [[GKImagePicker alloc] init];
+        CGFloat size = MIN(CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
+        imagePicker.cropSize = CGSizeMake(size - 10, size - 10);
+        imagePicker.delegate = self;
+        imagePicker.resizeableCropArea = YES;
+        imagePicker.imagePickerController.sourceType = type;
+        _imagePicker = imagePicker;
         //先检查相机可用是否
         BOOL cameraIsAvailable = [self checkCamera];
         if (YES == cameraIsAvailable) {
-            [self.navigationController presentViewController:picker animated:YES completion:nil];
+            [self.navigationController presentViewController:imagePicker.imagePickerController animated:YES completion:nil];
         }else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请在iPhone的“设置-隐私-相机”选项中，允许本应用程序访问你的相机。" delegate:self cancelButtonTitle:@"好，我知道了" otherButtonTitles:nil];
             [alert show];
         }
         
     }
+//    if ([UIImagePickerController isSourceTypeAvailable:type])
+//    {
+//        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//        picker.delegate = self;
+//        //设置拍照后的图片可被编辑
+//        picker.allowsEditing = YES;
+//        picker.sourceType = type;
+//        //先检查相机可用是否
+//        BOOL cameraIsAvailable = [self checkCamera];
+//        if (YES == cameraIsAvailable) {
+//            [self.navigationController presentViewController:picker animated:YES completion:nil];
+//        }else {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请在iPhone的“设置-隐私-相机”选项中，允许本应用程序访问你的相机。" delegate:self cancelButtonTitle:@"好，我知道了" otherButtonTitles:nil];
+//            [alert show];
+//        }
+//
+//    }
+}
+
+- (CGSize)resize:(CGSize)originSize inSize:(CGSize)maxSize{
+    CGFloat scale = MIN(maxSize.width / originSize.width , maxSize.height / originSize.height );
+    CGFloat width = originSize.width * scale;
+    CGFloat height = originSize.height * scale;
+    return CGSizeMake(width, height);
+}
+
+- (void)imagePicker:(GKImagePicker *)imagePicker pickedImage:(UIImage *)image{
+    //压缩图片尺寸
+    image = [self imageWithImageSimple:image scaledToSize:[self resize:image.size inSize:CGSizeMake(400, 400)]];
+    image = [self reduceImageSize:image];
+    //上传到服务器
+    //[self doAddPhoto:image];
+    [self savePhoto:image];
+    //关闭相册界面
+    [imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}- (void)imagePickerDidCancel:(GKImagePicker *)imagePicker{
+    [imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (BOOL)checkCamera
@@ -580,6 +625,8 @@
         }];
     }
 }
+
+
 
 //压缩图片质量
 -(UIImage *)reduceImageSize:(UIImage *)image

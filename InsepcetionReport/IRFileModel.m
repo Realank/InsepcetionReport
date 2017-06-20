@@ -155,13 +155,35 @@
     xlSheetWriteStr(sheet, row, col, [content UTF8String], 0);
 }
 
+- (CGSize)resize:(CGSize)originSize inSize:(CGSize)maxSize{
+    CGFloat scale = MIN(maxSize.width / originSize.width , maxSize.height / originSize.height );
+    CGFloat width = originSize.width * scale;
+    CGFloat height = originSize.height * scale;
+    return CGSizeMake(width, height);
+}
+
+- (CGRect)frameForImagePath:(NSString*)imagePath{
+    CGFloat maxWidth = 245;
+    CGFloat maxHeight = 140;
+    UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
+    if (!image) {
+        return CGRectMake(3, 3, maxWidth, maxHeight);
+    }
+    CGSize resize = [self resize:image.size inSize:CGSizeMake(maxWidth, maxHeight)];
+    CGRect frame = CGRectMake((maxWidth - resize.width)/2 + 3, (maxHeight - resize.height)/2 + 3, resize.width, resize.height);
+    return frame;
+}
+
 - (void)fillSheet:(SheetHandle)sheet inBook:(BookHandle)book image:(NSString*)imageUrl inRow:(int)row andCol:(int)col{
     if (imageUrl.length == 0 || sheet == NULL) {
         return;
     }
     
-    int picId = xlBookAddPicture(book, [[[self draftRootDir] stringByAppendingPathComponent:imageUrl] UTF8String]);
-    xlSheetSetPicture2A(sheet, row, col, picId, 140, 140, 60, 3, 0);
+    NSString* imagePath = [[self draftRootDir] stringByAppendingPathComponent:imageUrl];
+    CGRect frame = [self frameForImagePath:imagePath];
+    int picId = xlBookAddPicture(book, [imagePath UTF8String]);
+    //243,140
+    xlSheetSetPicture2A(sheet, row, col, picId, frame.size.width, frame.size.height, frame.origin.x, frame.origin.y, 0);
     //    xlSheetSetPictureA(sheet, row, col, picId, 1, 2, 2, 0);;
 }
 

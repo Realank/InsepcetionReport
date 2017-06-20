@@ -30,6 +30,14 @@
 		8C269DE51EF24DCB004DE418 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C269DE31EF24DCB004DE418 /* HistoryViewController.m */; };
 		8C269DE61EF24DCB004DE418 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C269DE41EF24DCB004DE418 /* HistoryViewController.xib */; };
 		8C2C06E81EF8A9A7001798F8 /* LibXL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2C06E71EF8A9A7001798F8 /* LibXL.framework */; };
+		8C84D23B1EF8EA45006D094D /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2301EF8EA45006D094D /* GKCropBorderView.m */; };
+		8C84D23C1EF8EA45006D094D /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2321EF8EA45006D094D /* GKImageCropOverlayView.m */; };
+		8C84D23D1EF8EA45006D094D /* GKImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2341EF8EA45006D094D /* GKImageCropView.m */; };
+		8C84D23E1EF8EA45006D094D /* GKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2361EF8EA45006D094D /* GKImageCropViewController.m */; };
+		8C84D23F1EF8EA45006D094D /* GKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2381EF8EA45006D094D /* GKImagePicker.m */; };
+		8C84D2401EF8EA45006D094D /* GKResizeableCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D23A1EF8EA45006D094D /* GKResizeableCropOverlayView.m */; };
+		8C84D2421EF8ED2A006D094D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C84D2411EF8ED2A006D094D /* Localizable.strings */; };
+		8C84D2481EF8F87D006D094D /* UIImage+FixeOritation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +78,21 @@
 		8C269DE41EF24DCB004DE418 /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		8C2C06E21EF8A74D001798F8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		8C2C06E71EF8A9A7001798F8 /* LibXL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LibXL.framework; sourceTree = "<group>"; };
+		8C84D22F1EF8EA45006D094D /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
+		8C84D2301EF8EA45006D094D /* GKCropBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKCropBorderView.m; sourceTree = "<group>"; };
+		8C84D2311EF8EA45006D094D /* GKImageCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropOverlayView.h; sourceTree = "<group>"; };
+		8C84D2321EF8EA45006D094D /* GKImageCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropOverlayView.m; sourceTree = "<group>"; };
+		8C84D2331EF8EA45006D094D /* GKImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropView.h; sourceTree = "<group>"; };
+		8C84D2341EF8EA45006D094D /* GKImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropView.m; sourceTree = "<group>"; };
+		8C84D2351EF8EA45006D094D /* GKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropViewController.h; sourceTree = "<group>"; };
+		8C84D2361EF8EA45006D094D /* GKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropViewController.m; sourceTree = "<group>"; };
+		8C84D2371EF8EA45006D094D /* GKImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImagePicker.h; sourceTree = "<group>"; };
+		8C84D2381EF8EA45006D094D /* GKImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImagePicker.m; sourceTree = "<group>"; };
+		8C84D2391EF8EA45006D094D /* GKResizeableCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKResizeableCropOverlayView.h; sourceTree = "<group>"; };
+		8C84D23A1EF8EA45006D094D /* GKResizeableCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKResizeableCropOverlayView.m; sourceTree = "<group>"; };
+		8C84D2411EF8ED2A006D094D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "../../../../../Downloads/GKImagePicker-master/GKImagePicker/Localizable.strings"; sourceTree = "<group>"; };
+		8C84D2461EF8F87D006D094D /* UIImage+FixeOritation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixeOritation.h"; sourceTree = "<group>"; };
+		8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixeOritation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +148,7 @@
 				8C094C281EF0CDC700118A91 /* Info.plist */,
 				8C094C251EF0CDC700118A91 /* LaunchScreen.storyboard */,
 				8C094C181EF0CDC700118A91 /* main.m */,
+				8C84D2411EF8ED2A006D094D /* Localizable.strings */,
 				8C269DD81EF20629004DE418 /* template.xlsx */,
 				8C2C06E21EF8A74D001798F8 /* PrefixHeader.pch */,
 			);
@@ -134,8 +158,11 @@
 		8C094C341EF0DF1D00118A91 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8C84D22E1EF8EA45006D094D /* GKClasses */,
 				8C094C351EF0DF3900118A91 /* NSDate+Realank.h */,
 				8C094C361EF0DF3900118A91 /* NSDate+Realank.m */,
+				8C84D2461EF8F87D006D094D /* UIImage+FixeOritation.h */,
+				8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -191,6 +218,26 @@
 			path = Preview;
 			sourceTree = "<group>";
 		};
+		8C84D22E1EF8EA45006D094D /* GKClasses */ = {
+			isa = PBXGroup;
+			children = (
+				8C84D22F1EF8EA45006D094D /* GKCropBorderView.h */,
+				8C84D2301EF8EA45006D094D /* GKCropBorderView.m */,
+				8C84D2311EF8EA45006D094D /* GKImageCropOverlayView.h */,
+				8C84D2321EF8EA45006D094D /* GKImageCropOverlayView.m */,
+				8C84D2331EF8EA45006D094D /* GKImageCropView.h */,
+				8C84D2341EF8EA45006D094D /* GKImageCropView.m */,
+				8C84D2351EF8EA45006D094D /* GKImageCropViewController.h */,
+				8C84D2361EF8EA45006D094D /* GKImageCropViewController.m */,
+				8C84D2371EF8EA45006D094D /* GKImagePicker.h */,
+				8C84D2381EF8EA45006D094D /* GKImagePicker.m */,
+				8C84D2391EF8EA45006D094D /* GKResizeableCropOverlayView.h */,
+				8C84D23A1EF8EA45006D094D /* GKResizeableCropOverlayView.m */,
+			);
+			name = GKClasses;
+			path = "../../../../../Downloads/GKImagePicker-master/GKClasses";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -217,7 +264,7 @@
 		8C094C0C1EF0CDC700118A91 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Realank;
 				TargetAttributes = {
 					8C094C131EF0CDC700118A91 = {
@@ -252,6 +299,7 @@
 			files = (
 				8C269DD91EF20DA3004DE418 /* template.xlsx in Resources */,
 				8C094C4F1EF0EFDC00118A91 /* IRImageCell.xib in Resources */,
+				8C84D2421EF8ED2A006D094D /* Localizable.strings in Resources */,
 				8C094C3C1EF0E08500118A91 /* DetailTableViewController.xib in Resources */,
 				8C269DE61EF24DCB004DE418 /* HistoryViewController.xib in Resources */,
 				8C094C271EF0CDC700118A91 /* LaunchScreen.storyboard in Resources */,
@@ -271,16 +319,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C094C3B1EF0E08500118A91 /* DetailTableViewController.m in Sources */,
+				8C84D2401EF8EA45006D094D /* GKResizeableCropOverlayView.m in Sources */,
+				8C84D23C1EF8EA45006D094D /* GKImageCropOverlayView.m in Sources */,
 				8C094C1C1EF0CDC700118A91 /* AppDelegate.m in Sources */,
 				8C094C191EF0CDC700118A91 /* main.m in Sources */,
 				8C269DD61EF20447004DE418 /* PreviewViewController.m in Sources */,
 				8C094C571EF0F03A00118A91 /* RLKBaseTableViewCell.m in Sources */,
+				8C84D2481EF8F87D006D094D /* UIImage+FixeOritation.m in Sources */,
+				8C84D23B1EF8EA45006D094D /* GKCropBorderView.m in Sources */,
 				8C094C3F1EF0E1C800118A91 /* IRFileModel.m in Sources */,
+				8C84D23F1EF8EA45006D094D /* GKImagePicker.m in Sources */,
 				8C269DDE1EF24C79004DE418 /* HomeViewController.m in Sources */,
+				8C84D23D1EF8EA45006D094D /* GKImageCropView.m in Sources */,
 				8C094C491EF0EFCB00118A91 /* IRInputCell.m in Sources */,
 				8C094C531EF0EFF100118A91 /* IRAddActionCell.m in Sources */,
 				8C094C4E1EF0EFDC00118A91 /* IRImageCell.m in Sources */,
 				8C094C371EF0DF3900118A91 /* NSDate+Realank.m in Sources */,
+				8C84D23E1EF8EA45006D094D /* GKImageCropViewController.m in Sources */,
 				8C269DE51EF24DCB004DE418 /* HistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,7 +365,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -318,7 +375,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -359,7 +420,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -367,7 +430,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

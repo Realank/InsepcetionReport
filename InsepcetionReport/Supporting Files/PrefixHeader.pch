@@ -15,4 +15,5 @@
 #import "IRFileModel.h"
 #import "NSDate+Realank.h"
 #import <LibXL/LibXL.h>
+#import "UIImage+FixeOritation.h"
 #endif /* PrefixHeader_pch */
