@@ -24,6 +24,7 @@
         _legViewImageUrls = [NSMutableArray array];
         
         _packageImageUrls = [NSMutableArray array];
+        _package2ImageUrls = [NSMutableArray array];
         _sparePartsPackageImageUrls = [NSMutableArray array];
         _extraSparePartsPackageImageUrls = [NSMutableArray array];
     }
@@ -55,7 +56,13 @@
     }
     // 创建excel文件,表格的格式是xls,如果要创建xlsx表格,需要用xlCreateXMLBook()创建
     BookHandle book = xlCreateXMLBook();
-    NSInteger ret = xlBookLoad(book, [[[NSBundle mainBundle] pathForResource:@"template.xlsx" ofType:nil]  UTF8String]);
+    NSInteger ret = 0;
+    if (_package2ImageUrls.count == 0) {
+        ret = xlBookLoad(book, [[[NSBundle mainBundle] pathForResource:@"template.xlsx" ofType:nil]  UTF8String]);
+    }else{
+        ret = xlBookLoad(book, [[[NSBundle mainBundle] pathForResource:@"template2.xlsx" ofType:nil]  UTF8String]);
+    }
+    
     if (ret == 0) {
         printf("%s\n",xlBookErrorMessage(book));
         return nil;
@@ -82,57 +89,67 @@
      *  参数4:要写入的具体内容,注意是C字符串
      *  参数5:数据要转换的格式,类型是FormatHandle,不清楚怎么定义的话可以直接写0,使用默认的
      */
-    [self fillSheet:sheet content:self.dateString inRow:5 andCol:0];
-    [self fillSheet:sheet content:self.supplier inRow:5 andCol:4];
-    [self fillSheet:sheet content:self.poNumber inRow:5 andCol:10];
-    [self fillSheet:sheet content:self.checkCharger inRow:5 andCol:16];
+    int row = 5;
+    [self fillSheet:sheet content:self.dateString inRow:row andCol:0];
+    [self fillSheet:sheet content:self.supplier inRow:row andCol:4];
+    [self fillSheet:sheet content:self.poNumber inRow:row andCol:10];
+    [self fillSheet:sheet content:self.checkCharger inRow:row andCol:16];
     
-    [self fillSheet:sheet content:self.itemNum inRow:8 andCol:0];
-    [self fillSheet:sheet content:self.color inRow:8 andCol:4];
-    [self fillSheet:sheet content:self.orderQuantity inRow:8 andCol:8];
-    [self fillSheet:sheet content:self.finishedQuantity inRow:8 andCol:12];
-    [self fillSheet:sheet content:self.inspectedQuantity inRow:8 andCol:16];
+    row = 8;
+    [self fillSheet:sheet content:self.itemNum inRow:row andCol:0];
+    [self fillSheet:sheet content:self.color inRow:row andCol:4];
+    [self fillSheet:sheet content:self.orderQuantity inRow:row andCol:8];
+    [self fillSheet:sheet content:self.finishedQuantity inRow:row andCol:12];
+    [self fillSheet:sheet content:self.inspectedQuantity inRow:row andCol:16];
     
-    [self fillSheet:sheet inBook:book image:self.frontMarkImageUrl inRow:11 andCol:0];
-    [self fillSheet:sheet inBook:book image:self.sideMarkImageUrl inRow:11 andCol:5];
-    [self fillSheet:sheet inBook:book image:self.assemblyInstructionImageUrl inRow:11 andCol:10];
-    [self fillSheet:sheet inBook:book image:self.sparePartsImageUrl inRow:11 andCol:15];
+    row = 11;
+    [self fillSheet:sheet inBook:book image:self.frontMarkImageUrl inRow:row andCol:0];
+    [self fillSheet:sheet inBook:book image:self.sideMarkImageUrl inRow:row andCol:5];
+    [self fillSheet:sheet inBook:book image:self.assemblyInstructionImageUrl inRow:row andCol:10];
+    [self fillSheet:sheet inBook:book image:self.sparePartsImageUrl inRow:row andCol:15];
     
+    row = 21;
     NSArray* urlArray = self.frontViewImageUrls;
     for (int i = 0; i < urlArray.count; i++) {
         NSString* imgUrl = urlArray[i];
-        [self fillSheet:sheet inBook:book image:imgUrl inRow:21 andCol:0 + 5*i];
+        [self fillSheet:sheet inBook:book image:imgUrl inRow:row andCol:0 + 5*i];
     }
     urlArray = self.sideViewImageUrls;
     for (int i = 0; i < urlArray.count; i++) {
         NSString* imgUrl = urlArray[i];
-        [self fillSheet:sheet inBook:book image:imgUrl inRow:21 andCol:10 + 5*i];
+        [self fillSheet:sheet inBook:book image:imgUrl inRow:row andCol:10 + 5*i];
     }
+    
+    row = 31;
     urlArray = self.backViewImageUrls;
     for (int i = 0; i < urlArray.count; i++) {
         NSString* imgUrl = urlArray[i];
-        [self fillSheet:sheet inBook:book image:imgUrl inRow:31 andCol:0 + 5*i];
+        [self fillSheet:sheet inBook:book image:imgUrl inRow:row andCol:0 + 5*i];
     }
     urlArray = self.legViewImageUrls;
     for (int i = 0; i < urlArray.count; i++) {
         NSString* imgUrl = urlArray[i];
-        [self fillSheet:sheet inBook:book image:imgUrl inRow:31 andCol:10 + 5*i];
+        [self fillSheet:sheet inBook:book image:imgUrl inRow:row andCol:10 + 5*i];
     }
     
-    urlArray = self.packageImageUrls;
-    for (int i = 0; i < urlArray.count; i++) {
-        NSString* imgUrl = urlArray[i];
-        [self fillSheet:sheet inBook:book image:imgUrl inRow:41 andCol:0 + 5*i];
+    row = 41;
+    [self fillPackageImages:self.packageImageUrls inSheet:sheet inBook:book row:row];
+    
+    if (_package2ImageUrls.count) {
+        row = 51;
+        [self fillPackageImages:self.package2ImageUrls inSheet:sheet inBook:book row:row];
     }
+    
+    row += 10;
     urlArray = self.sparePartsPackageImageUrls;
     for (int i = 0; i < urlArray.count; i++) {
         NSString* imgUrl = urlArray[i];
-        [self fillSheet:sheet inBook:book image:imgUrl inRow:51 andCol:0 + 5*i];
+        [self fillSheet:sheet inBook:book image:imgUrl inRow:row andCol:0 + 5*i];
     }
     urlArray = self.extraSparePartsPackageImageUrls;
     for (int i = 0; i < urlArray.count; i++) {
         NSString* imgUrl = urlArray[i];
-        [self fillSheet:sheet inBook:book image:imgUrl inRow:51 andCol:10 + 5*i];
+        [self fillSheet:sheet inBook:book image:imgUrl inRow:row andCol:10 + 5*i];
     }
     
     // 先写入沙盒
@@ -162,16 +179,38 @@
     return CGSizeMake(width, height);
 }
 
-- (CGRect)frameForImagePath:(NSString*)imagePath{
-    CGFloat maxWidth = 246;
-    CGFloat maxHeight = 140;
+- (CGRect)frameForImagePath:(NSString*)imagePath inMaxSize:(CGSize)maxSize{
     UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
     if (!image) {
-        return CGRectMake(3, 3, maxWidth, maxHeight);
+        return CGRectMake(3, 3, maxSize.width, maxSize.height);
     }
-    CGSize resize = [self resize:image.size inSize:CGSizeMake(maxWidth, maxHeight)];
-    CGRect frame = CGRectMake((maxWidth - resize.width)/2 + 3, (maxHeight - resize.height)/2 + 3, resize.width, resize.height);
+    CGSize resize = [self resize:image.size inSize:CGSizeMake(maxSize.width, maxSize.height)];
+    CGRect frame = CGRectMake((maxSize.width - resize.width)/2 + 3, (maxSize.height - resize.height)/2 + 3, resize.width, resize.height);
     return frame;
+}
+
+- (void)fillPackageImages:(NSArray*)urls inSheet:(SheetHandle)sheet inBook:(BookHandle)book row:(int)row{
+    if (urls.count == 0 || sheet == NULL) {
+        return;
+    }
+    for (int i = 0; i < urls.count; i++) {
+        NSString* imgUrl = urls[i];
+        if (imgUrl.length == 0) {
+            continue;
+        }
+        
+        NSString* imagePath = [[self draftRootDir] stringByAppendingPathComponent:imgUrl];
+        CGFloat maxWidth = 245 * 4 / urls.count;
+        CGFloat maxHeight = 140;
+        CGRect frame = [self frameForImagePath:imagePath inMaxSize:CGSizeMake(maxWidth - 3, maxHeight)];
+        int picId = xlBookAddPicture(book, [imagePath UTF8String]);
+        float cellWidth = (245 * 4 / 20.0);
+        int startCol =  (maxWidth * i + frame.origin.x ) / cellWidth;
+        int x =  (maxWidth * i + frame.origin.x ) - startCol * cellWidth;
+        xlSheetSetPicture2A(sheet, row, startCol, picId, frame.size.width, frame.size.height, x, frame.origin.y, 0);
+        
+    }
+    
 }
 
 - (void)fillSheet:(SheetHandle)sheet inBook:(BookHandle)book image:(NSString*)imageUrl inRow:(int)row andCol:(int)col{
@@ -180,7 +219,9 @@
     }
     
     NSString* imagePath = [[self draftRootDir] stringByAppendingPathComponent:imageUrl];
-    CGRect frame = [self frameForImagePath:imagePath];
+    CGFloat maxWidth = 245;
+    CGFloat maxHeight = 140;
+    CGRect frame = [self frameForImagePath:imagePath inMaxSize:CGSizeMake(maxWidth, maxHeight)];
     int picId = xlBookAddPicture(book, [imagePath UTF8String]);
     //243,140
     xlSheetSetPicture2A(sheet, row, col, picId, frame.size.width, frame.size.height, frame.origin.x, frame.origin.y, 0);
@@ -239,6 +280,7 @@
              @"legViewImageUrls" : [_legViewImageUrls copy],
                  
              @"packageImageUrls" : [_packageImageUrls copy],
+             @"package2ImageUrls" : [_package2ImageUrls copy],
              @"sparePartsPackageImageUrls" : [_sparePartsPackageImageUrls copy],
              @"extraSparePartsPackageImageUrls" : [_extraSparePartsPackageImageUrls copy],
                  };
@@ -307,6 +349,7 @@
     model.legViewImageUrls = [model filtUrlsFromArray:dict[@"legViewImageUrls"]];
     
     model.packageImageUrls = [model filtUrlsFromArray:dict[@"packageImageUrls"]];
+    model.package2ImageUrls = [model filtUrlsFromArray:dict[@"package2ImageUrls"]];
     model.sparePartsPackageImageUrls = [model filtUrlsFromArray:dict[@"sparePartsPackageImageUrls"]];
     model.extraSparePartsPackageImageUrls = [model filtUrlsFromArray:dict[@"extraSparePartsPackageImageUrls"]];
     

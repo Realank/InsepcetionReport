@@ -38,6 +38,7 @@
 		8C84D2401EF8EA45006D094D /* GKResizeableCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D23A1EF8EA45006D094D /* GKResizeableCropOverlayView.m */; };
 		8C84D2421EF8ED2A006D094D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C84D2411EF8ED2A006D094D /* Localizable.strings */; };
 		8C84D2481EF8F87D006D094D /* UIImage+FixeOritation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */; };
+		8CD700881EFA6E3A00C3E33B /* template2.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 8CD700871EFA6E2D00C3E33B /* template2.xlsx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		8C84D2411EF8ED2A006D094D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "../../../../../Downloads/GKImagePicker-master/GKImagePicker/Localizable.strings"; sourceTree = "<group>"; };
 		8C84D2461EF8F87D006D094D /* UIImage+FixeOritation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixeOritation.h"; sourceTree = "<group>"; };
 		8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixeOritation.m"; sourceTree = "<group>"; };
+		8CD700871EFA6E2D00C3E33B /* template2.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = template2.xlsx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				8C094C181EF0CDC700118A91 /* main.m */,
 				8C84D2411EF8ED2A006D094D /* Localizable.strings */,
 				8C269DD81EF20629004DE418 /* template.xlsx */,
+				8CD700871EFA6E2D00C3E33B /* template2.xlsx */,
 				8C2C06E21EF8A74D001798F8 /* PrefixHeader.pch */,
 			);
 			path = "Supporting Files";
@@ -297,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD700881EFA6E3A00C3E33B /* template2.xlsx in Resources */,
 				8C269DD91EF20DA3004DE418 /* template.xlsx in Resources */,
 				8C094C4F1EF0EFDC00118A91 /* IRImageCell.xib in Resources */,
 				8C84D2421EF8ED2A006D094D /* Localizable.strings in Resources */,

@@ -174,7 +174,9 @@
         case IRContentLegViewImageUrl://leg view
             return MIN(2, _fileModel.legViewImageUrls.count+1);
         case IRContentPackageImageUrl://package view
-            return MIN(4, _fileModel.packageImageUrls.count+1);
+            return MIN(6, _fileModel.packageImageUrls.count+1);
+        case IRContentPackage2ImageUrl://package view
+            return MIN(6, _fileModel.package2ImageUrls.count+1);
         case IRContentSparePartsPackageImageUrl://spare parts
             return MIN(2, _fileModel.sparePartsPackageImageUrls.count+1);
         case IRContentExtraSparePartsPackageImageUrl://extra spare parts
@@ -239,6 +241,10 @@
             }
         }else if(type == IRContentPackageImageUrl){
             if (_fileModel.packageImageUrls.count > row) {
+                isImageCell = YES;
+            }
+        }else if(type == IRContentPackage2ImageUrl){
+            if (_fileModel.package2ImageUrls.count > row) {
                 isImageCell = YES;
             }
         }else if(type == IRContentSparePartsPackageImageUrl){
@@ -350,6 +356,11 @@
                 isImageCell = YES;
                 content = _fileModel.packageImageUrls[row];
             }
+        }else if(type == IRContentPackage2ImageUrl){
+            if (_fileModel.package2ImageUrls.count > row) {
+                isImageCell = YES;
+                content = _fileModel.package2ImageUrls[row];
+            }
         }else if(type == IRContentSparePartsPackageImageUrl){
             if (_fileModel.sparePartsPackageImageUrls.count > row) {
                 isImageCell = YES;
@@ -414,6 +425,8 @@
             return @"LEGS/BASE";
         case IRContentPackageImageUrl://package view
             return @"Product Packaging Photos";
+        case IRContentPackage2ImageUrl://package view
+            return @"*Product Packaging Photos 2";
         case IRContentSparePartsPackageImageUrl://spare parts
             return @"Original Spare Parts Packaging Photos";
         case IRContentExtraSparePartsPackageImageUrl://extra spare parts
@@ -471,6 +484,10 @@
     }else if(type == IRContentPackageImageUrl){
         if (_fileModel.packageImageUrls.count > row) {
             [_fileModel.packageImageUrls removeObjectAtIndex:row];
+        }
+    }else if(type == IRContentPackage2ImageUrl){
+        if (_fileModel.package2ImageUrls.count > row) {
+            [_fileModel.package2ImageUrls removeObjectAtIndex:row];
         }
     }else if(type == IRContentSparePartsPackageImageUrl){
         
@@ -551,12 +568,14 @@
 }
 
 - (void)imagePicker:(GKImagePicker *)imagePicker pickedImage:(UIImage *)image{
+    [self savePhoto:image];
     //压缩图片尺寸
-    image = [self imageWithImageSimple:image scaledToSize:[self resize:image.size inSize:CGSizeMake(400, 400)]];
+    image = [self imageWithImageSimple:image scaledToSize:[self resize:image.size inSize:CGSizeMake(600, 600)]];
     image = [self reduceImageSize:image];
     //上传到服务器
     //[self doAddPhoto:image];
-    [self savePhoto:image];
+    
+    [self insertImageToModel:image];
     //关闭相册界面
     [imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:^{
         
@@ -619,6 +638,7 @@
         //上传到服务器
         //[self doAddPhoto:image];
         [self savePhoto:image];
+        [self insertImageToModel:image];
         //关闭相册界面
         [picker dismissViewControllerAnimated:YES completion:^{
             
@@ -632,7 +652,7 @@
 -(UIImage *)reduceImageSize:(UIImage *)image
 {
     NSData *imageData = UIImageJPEGRepresentation(image, 1);
-    double compressedSizeMax = 100 * 1024;
+    double compressedSizeMax = 300 * 1024;
     if (imageData.length > compressedSizeMax) {
         imageData = UIImageJPEGRepresentation(image, compressedSizeMax/imageData.length);
     }
@@ -656,6 +676,11 @@
 }
 
 - (void)savePhoto:(UIImage*)image{
+    
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+}
+
+- (void)insertImageToModel:(UIImage*)image{
     
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     
@@ -690,6 +715,9 @@
             break;
         case IRContentPackageImageUrl://package view
             [_fileModel.packageImageUrls addObject:fileName];
+            break;
+        case IRContentPackage2ImageUrl://package2 view
+            [_fileModel.package2ImageUrls addObject:fileName];
             break;
         case IRContentSparePartsPackageImageUrl://spare parts
             [_fileModel.sparePartsPackageImageUrls addObject:fileName];

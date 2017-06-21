@@ -27,6 +27,7 @@ typedef enum : NSUInteger {
     IRContentBackViewImageUrl,
     IRContentLegViewImageUrl,
     IRContentPackageImageUrl,
+    IRContentPackage2ImageUrl,
     IRContentSparePartsPackageImageUrl,
     IRContentExtraSparePartsPackageImageUrl,
     IRContentMAX
@@ -60,6 +61,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSMutableArray* legViewImageUrls;
 
 @property (nonatomic, strong) NSMutableArray* packageImageUrls;
+@property (nonatomic, strong) NSMutableArray* package2ImageUrls;
 @property (nonatomic, strong) NSMutableArray* sparePartsPackageImageUrls;
 @property (nonatomic, strong) NSMutableArray* extraSparePartsPackageImageUrls;
 
