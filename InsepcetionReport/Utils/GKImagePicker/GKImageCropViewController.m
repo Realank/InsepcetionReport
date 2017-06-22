@@ -38,7 +38,7 @@
 
 
 - (void)_actionCancel{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -129,7 +129,7 @@
         123./255., 125/255., 132./255., 1.
     };
 	
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 54), YES, 0.0);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.view.bounds.size.width, 54), YES, 0.0);
 	
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
