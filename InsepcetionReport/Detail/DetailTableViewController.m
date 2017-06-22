@@ -443,7 +443,7 @@
         case IRContentExtraSparePartsPackageImageUrl://extra spare parts
             return @"Extra Spare Parts Packaging Photos";
         case IRContentOtherImageUrl://other image
-            return @"**Other Images";
+            return @"**Other Photos";
     }
     return @"unknown";
 }
