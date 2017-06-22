@@ -30,6 +30,7 @@ typedef enum : NSUInteger {
     IRContentPackage2ImageUrl,
     IRContentSparePartsPackageImageUrl,
     IRContentExtraSparePartsPackageImageUrl,
+    IRContentOtherImageUrl,
     IRContentMAX
 } IRContentType;
 
@@ -65,6 +66,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSMutableArray* sparePartsPackageImageUrls;
 @property (nonatomic, strong) NSMutableArray* extraSparePartsPackageImageUrls;
 
+@property (nonatomic, strong) NSMutableArray* otherImageUrls;
 
 
 - (instancetype)initWithFileName:(NSString*)fileName;

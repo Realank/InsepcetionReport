@@ -27,6 +27,8 @@
         _package2ImageUrls = [NSMutableArray array];
         _sparePartsPackageImageUrls = [NSMutableArray array];
         _extraSparePartsPackageImageUrls = [NSMutableArray array];
+        
+        _otherImageUrls = [NSMutableArray array];
     }
     return self;
 }
@@ -150,6 +152,11 @@
     for (int i = 0; i < urlArray.count; i++) {
         NSString* imgUrl = urlArray[i];
         [self fillSheet:sheet inBook:book image:imgUrl inRow:row andCol:10 + 5*i];
+    }
+    
+    row += 15;
+    if (_otherImageUrls.count) {
+        [self fillPackageImages:self.otherImageUrls inSheet:sheet inBook:book row:row];
     }
     
     // 先写入沙盒
@@ -283,6 +290,7 @@
              @"package2ImageUrls" : [_package2ImageUrls copy],
              @"sparePartsPackageImageUrls" : [_sparePartsPackageImageUrls copy],
              @"extraSparePartsPackageImageUrls" : [_extraSparePartsPackageImageUrls copy],
+             @"otherImageUrls" : [_otherImageUrls copy],
                  };
 }
 
@@ -352,6 +360,8 @@
     model.package2ImageUrls = [model filtUrlsFromArray:dict[@"package2ImageUrls"]];
     model.sparePartsPackageImageUrls = [model filtUrlsFromArray:dict[@"sparePartsPackageImageUrls"]];
     model.extraSparePartsPackageImageUrls = [model filtUrlsFromArray:dict[@"extraSparePartsPackageImageUrls"]];
+    
+    model.otherImageUrls = [model filtUrlsFromArray:dict[@"otherImageUrls"]];
     
     return model;
 }

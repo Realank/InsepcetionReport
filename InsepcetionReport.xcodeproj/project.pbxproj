@@ -22,6 +22,12 @@
 		8C094C531EF0EFF100118A91 /* IRAddActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C094C511EF0EFF100118A91 /* IRAddActionCell.m */; };
 		8C094C541EF0EFF100118A91 /* IRAddActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C094C521EF0EFF100118A91 /* IRAddActionCell.xib */; };
 		8C094C571EF0F03A00118A91 /* RLKBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C094C561EF0F03A00118A91 /* RLKBaseTableViewCell.m */; };
+		8C22FDD71EFB8DC400F50A71 /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C22FDCC1EFB8DC400F50A71 /* GKCropBorderView.m */; };
+		8C22FDD81EFB8DC400F50A71 /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C22FDCE1EFB8DC400F50A71 /* GKImageCropOverlayView.m */; };
+		8C22FDD91EFB8DC400F50A71 /* GKImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C22FDD01EFB8DC400F50A71 /* GKImageCropView.m */; };
+		8C22FDDA1EFB8DC400F50A71 /* GKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C22FDD21EFB8DC400F50A71 /* GKImageCropViewController.m */; };
+		8C22FDDB1EFB8DC400F50A71 /* GKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C22FDD41EFB8DC400F50A71 /* GKImagePicker.m */; };
+		8C22FDDC1EFB8DC400F50A71 /* GKResizeableCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C22FDD61EFB8DC400F50A71 /* GKResizeableCropOverlayView.m */; };
 		8C269DD61EF20447004DE418 /* PreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C269DD41EF20447004DE418 /* PreviewViewController.m */; };
 		8C269DD71EF20447004DE418 /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C269DD51EF20447004DE418 /* PreviewViewController.xib */; };
 		8C269DD91EF20DA3004DE418 /* template.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 8C269DD81EF20629004DE418 /* template.xlsx */; };
@@ -30,13 +36,7 @@
 		8C269DE51EF24DCB004DE418 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C269DE31EF24DCB004DE418 /* HistoryViewController.m */; };
 		8C269DE61EF24DCB004DE418 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C269DE41EF24DCB004DE418 /* HistoryViewController.xib */; };
 		8C2C06E81EF8A9A7001798F8 /* LibXL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2C06E71EF8A9A7001798F8 /* LibXL.framework */; };
-		8C84D23B1EF8EA45006D094D /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2301EF8EA45006D094D /* GKCropBorderView.m */; };
-		8C84D23C1EF8EA45006D094D /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2321EF8EA45006D094D /* GKImageCropOverlayView.m */; };
-		8C84D23D1EF8EA45006D094D /* GKImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2341EF8EA45006D094D /* GKImageCropView.m */; };
-		8C84D23E1EF8EA45006D094D /* GKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2361EF8EA45006D094D /* GKImageCropViewController.m */; };
-		8C84D23F1EF8EA45006D094D /* GKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2381EF8EA45006D094D /* GKImagePicker.m */; };
-		8C84D2401EF8EA45006D094D /* GKResizeableCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D23A1EF8EA45006D094D /* GKResizeableCropOverlayView.m */; };
-		8C84D2421EF8ED2A006D094D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C84D2411EF8ED2A006D094D /* Localizable.strings */; };
+		8C40DCA11EFB742C00F9B177 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C40DCA01EFB742C00F9B177 /* Localizable.strings */; };
 		8C84D2481EF8F87D006D094D /* UIImage+FixeOritation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */; };
 		8CD700881EFA6E3A00C3E33B /* template2.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 8CD700871EFA6E2D00C3E33B /* template2.xlsx */; };
 /* End PBXBuildFile section */
@@ -67,6 +67,18 @@
 		8C094C521EF0EFF100118A91 /* IRAddActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IRAddActionCell.xib; sourceTree = "<group>"; };
 		8C094C551EF0F03A00118A91 /* RLKBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLKBaseTableViewCell.h; sourceTree = "<group>"; };
 		8C094C561EF0F03A00118A91 /* RLKBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLKBaseTableViewCell.m; sourceTree = "<group>"; };
+		8C22FDCB1EFB8DC400F50A71 /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
+		8C22FDCC1EFB8DC400F50A71 /* GKCropBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKCropBorderView.m; sourceTree = "<group>"; };
+		8C22FDCD1EFB8DC400F50A71 /* GKImageCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropOverlayView.h; sourceTree = "<group>"; };
+		8C22FDCE1EFB8DC400F50A71 /* GKImageCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropOverlayView.m; sourceTree = "<group>"; };
+		8C22FDCF1EFB8DC400F50A71 /* GKImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropView.h; sourceTree = "<group>"; };
+		8C22FDD01EFB8DC400F50A71 /* GKImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropView.m; sourceTree = "<group>"; };
+		8C22FDD11EFB8DC400F50A71 /* GKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropViewController.h; sourceTree = "<group>"; };
+		8C22FDD21EFB8DC400F50A71 /* GKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropViewController.m; sourceTree = "<group>"; };
+		8C22FDD31EFB8DC400F50A71 /* GKImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImagePicker.h; sourceTree = "<group>"; };
+		8C22FDD41EFB8DC400F50A71 /* GKImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImagePicker.m; sourceTree = "<group>"; };
+		8C22FDD51EFB8DC400F50A71 /* GKResizeableCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKResizeableCropOverlayView.h; sourceTree = "<group>"; };
+		8C22FDD61EFB8DC400F50A71 /* GKResizeableCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKResizeableCropOverlayView.m; sourceTree = "<group>"; };
 		8C269DD31EF20447004DE418 /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
 		8C269DD41EF20447004DE418 /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
 		8C269DD51EF20447004DE418 /* PreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewViewController.xib; sourceTree = "<group>"; };
@@ -79,19 +91,7 @@
 		8C269DE41EF24DCB004DE418 /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		8C2C06E21EF8A74D001798F8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		8C2C06E71EF8A9A7001798F8 /* LibXL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LibXL.framework; sourceTree = "<group>"; };
-		8C84D22F1EF8EA45006D094D /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
-		8C84D2301EF8EA45006D094D /* GKCropBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKCropBorderView.m; sourceTree = "<group>"; };
-		8C84D2311EF8EA45006D094D /* GKImageCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropOverlayView.h; sourceTree = "<group>"; };
-		8C84D2321EF8EA45006D094D /* GKImageCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropOverlayView.m; sourceTree = "<group>"; };
-		8C84D2331EF8EA45006D094D /* GKImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropView.h; sourceTree = "<group>"; };
-		8C84D2341EF8EA45006D094D /* GKImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropView.m; sourceTree = "<group>"; };
-		8C84D2351EF8EA45006D094D /* GKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropViewController.h; sourceTree = "<group>"; };
-		8C84D2361EF8EA45006D094D /* GKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropViewController.m; sourceTree = "<group>"; };
-		8C84D2371EF8EA45006D094D /* GKImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImagePicker.h; sourceTree = "<group>"; };
-		8C84D2381EF8EA45006D094D /* GKImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImagePicker.m; sourceTree = "<group>"; };
-		8C84D2391EF8EA45006D094D /* GKResizeableCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKResizeableCropOverlayView.h; sourceTree = "<group>"; };
-		8C84D23A1EF8EA45006D094D /* GKResizeableCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKResizeableCropOverlayView.m; sourceTree = "<group>"; };
-		8C84D2411EF8ED2A006D094D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "../../../../../Downloads/GKImagePicker-master/GKImagePicker/Localizable.strings"; sourceTree = "<group>"; };
+		8C40DCA01EFB742C00F9B177 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../../../../Desktop/Localizable.strings; sourceTree = "<group>"; };
 		8C84D2461EF8F87D006D094D /* UIImage+FixeOritation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixeOritation.h"; sourceTree = "<group>"; };
 		8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixeOritation.m"; sourceTree = "<group>"; };
 		8CD700871EFA6E2D00C3E33B /* template2.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = template2.xlsx; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 				8C094C281EF0CDC700118A91 /* Info.plist */,
 				8C094C251EF0CDC700118A91 /* LaunchScreen.storyboard */,
 				8C094C181EF0CDC700118A91 /* main.m */,
-				8C84D2411EF8ED2A006D094D /* Localizable.strings */,
+				8C40DCA01EFB742C00F9B177 /* Localizable.strings */,
 				8C269DD81EF20629004DE418 /* template.xlsx */,
 				8CD700871EFA6E2D00C3E33B /* template2.xlsx */,
 				8C2C06E21EF8A74D001798F8 /* PrefixHeader.pch */,
@@ -161,13 +161,32 @@
 		8C094C341EF0DF1D00118A91 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				8C84D22E1EF8EA45006D094D /* GKClasses */,
+				8C22FDCA1EFB8DC400F50A71 /* GKImagePicker */,
 				8C094C351EF0DF3900118A91 /* NSDate+Realank.h */,
 				8C094C361EF0DF3900118A91 /* NSDate+Realank.m */,
 				8C84D2461EF8F87D006D094D /* UIImage+FixeOritation.h */,
 				8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		8C22FDCA1EFB8DC400F50A71 /* GKImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				8C22FDCB1EFB8DC400F50A71 /* GKCropBorderView.h */,
+				8C22FDCC1EFB8DC400F50A71 /* GKCropBorderView.m */,
+				8C22FDCD1EFB8DC400F50A71 /* GKImageCropOverlayView.h */,
+				8C22FDCE1EFB8DC400F50A71 /* GKImageCropOverlayView.m */,
+				8C22FDCF1EFB8DC400F50A71 /* GKImageCropView.h */,
+				8C22FDD01EFB8DC400F50A71 /* GKImageCropView.m */,
+				8C22FDD11EFB8DC400F50A71 /* GKImageCropViewController.h */,
+				8C22FDD21EFB8DC400F50A71 /* GKImageCropViewController.m */,
+				8C22FDD31EFB8DC400F50A71 /* GKImagePicker.h */,
+				8C22FDD41EFB8DC400F50A71 /* GKImagePicker.m */,
+				8C22FDD51EFB8DC400F50A71 /* GKResizeableCropOverlayView.h */,
+				8C22FDD61EFB8DC400F50A71 /* GKResizeableCropOverlayView.m */,
+			);
+			path = GKImagePicker;
 			sourceTree = "<group>";
 		};
 		8C269DE01EF24D9E004DE418 /* Home */ = {
@@ -219,26 +238,6 @@
 				8C269DD51EF20447004DE418 /* PreviewViewController.xib */,
 			);
 			path = Preview;
-			sourceTree = "<group>";
-		};
-		8C84D22E1EF8EA45006D094D /* GKClasses */ = {
-			isa = PBXGroup;
-			children = (
-				8C84D22F1EF8EA45006D094D /* GKCropBorderView.h */,
-				8C84D2301EF8EA45006D094D /* GKCropBorderView.m */,
-				8C84D2311EF8EA45006D094D /* GKImageCropOverlayView.h */,
-				8C84D2321EF8EA45006D094D /* GKImageCropOverlayView.m */,
-				8C84D2331EF8EA45006D094D /* GKImageCropView.h */,
-				8C84D2341EF8EA45006D094D /* GKImageCropView.m */,
-				8C84D2351EF8EA45006D094D /* GKImageCropViewController.h */,
-				8C84D2361EF8EA45006D094D /* GKImageCropViewController.m */,
-				8C84D2371EF8EA45006D094D /* GKImagePicker.h */,
-				8C84D2381EF8EA45006D094D /* GKImagePicker.m */,
-				8C84D2391EF8EA45006D094D /* GKResizeableCropOverlayView.h */,
-				8C84D23A1EF8EA45006D094D /* GKResizeableCropOverlayView.m */,
-			);
-			name = GKClasses;
-			path = "../../../../../Downloads/GKImagePicker-master/GKClasses";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,9 +300,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD700881EFA6E3A00C3E33B /* template2.xlsx in Resources */,
+				8C40DCA11EFB742C00F9B177 /* Localizable.strings in Resources */,
 				8C269DD91EF20DA3004DE418 /* template.xlsx in Resources */,
 				8C094C4F1EF0EFDC00118A91 /* IRImageCell.xib in Resources */,
-				8C84D2421EF8ED2A006D094D /* Localizable.strings in Resources */,
 				8C094C3C1EF0E08500118A91 /* DetailTableViewController.xib in Resources */,
 				8C269DE61EF24DCB004DE418 /* HistoryViewController.xib in Resources */,
 				8C094C271EF0CDC700118A91 /* LaunchScreen.storyboard in Resources */,
@@ -322,25 +321,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C22FDD91EFB8DC400F50A71 /* GKImageCropView.m in Sources */,
+				8C22FDDB1EFB8DC400F50A71 /* GKImagePicker.m in Sources */,
 				8C094C3B1EF0E08500118A91 /* DetailTableViewController.m in Sources */,
-				8C84D2401EF8EA45006D094D /* GKResizeableCropOverlayView.m in Sources */,
-				8C84D23C1EF8EA45006D094D /* GKImageCropOverlayView.m in Sources */,
 				8C094C1C1EF0CDC700118A91 /* AppDelegate.m in Sources */,
+				8C22FDD71EFB8DC400F50A71 /* GKCropBorderView.m in Sources */,
 				8C094C191EF0CDC700118A91 /* main.m in Sources */,
 				8C269DD61EF20447004DE418 /* PreviewViewController.m in Sources */,
 				8C094C571EF0F03A00118A91 /* RLKBaseTableViewCell.m in Sources */,
 				8C84D2481EF8F87D006D094D /* UIImage+FixeOritation.m in Sources */,
-				8C84D23B1EF8EA45006D094D /* GKCropBorderView.m in Sources */,
 				8C094C3F1EF0E1C800118A91 /* IRFileModel.m in Sources */,
-				8C84D23F1EF8EA45006D094D /* GKImagePicker.m in Sources */,
 				8C269DDE1EF24C79004DE418 /* HomeViewController.m in Sources */,
-				8C84D23D1EF8EA45006D094D /* GKImageCropView.m in Sources */,
+				8C22FDDC1EFB8DC400F50A71 /* GKResizeableCropOverlayView.m in Sources */,
 				8C094C491EF0EFCB00118A91 /* IRInputCell.m in Sources */,
 				8C094C531EF0EFF100118A91 /* IRAddActionCell.m in Sources */,
 				8C094C4E1EF0EFDC00118A91 /* IRImageCell.m in Sources */,
 				8C094C371EF0DF3900118A91 /* NSDate+Realank.m in Sources */,
-				8C84D23E1EF8EA45006D094D /* GKImageCropViewController.m in Sources */,
+				8C22FDDA1EFB8DC400F50A71 /* GKImageCropViewController.m in Sources */,
 				8C269DE51EF24DCB004DE418 /* HistoryViewController.m in Sources */,
+				8C22FDD81EFB8DC400F50A71 /* GKImageCropOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

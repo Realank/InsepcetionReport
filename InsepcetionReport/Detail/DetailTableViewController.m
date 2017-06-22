@@ -175,12 +175,14 @@
             return MIN(2, _fileModel.legViewImageUrls.count+1);
         case IRContentPackageImageUrl://package view
             return MIN(6, _fileModel.packageImageUrls.count+1);
-        case IRContentPackage2ImageUrl://package view
+        case IRContentPackage2ImageUrl://package2 view
             return MIN(6, _fileModel.package2ImageUrls.count+1);
         case IRContentSparePartsPackageImageUrl://spare parts
             return MIN(2, _fileModel.sparePartsPackageImageUrls.count+1);
         case IRContentExtraSparePartsPackageImageUrl://extra spare parts
             return MIN(2, _fileModel.extraSparePartsPackageImageUrls.count+1);
+        case IRContentOtherImageUrl://extra spare parts
+            return MIN(6, _fileModel.otherImageUrls.count+1);
     }
     return 0;
 }
@@ -253,6 +255,10 @@
             }
         }else if(type == IRContentExtraSparePartsPackageImageUrl){
             if (_fileModel.extraSparePartsPackageImageUrls.count > row) {
+                isImageCell = YES;
+            }
+        }else if(type == IRContentOtherImageUrl){
+            if (_fileModel.otherImageUrls.count > row) {
                 isImageCell = YES;
             }
         }
@@ -371,6 +377,11 @@
                 isImageCell = YES;
                 content = _fileModel.extraSparePartsPackageImageUrls[row];
             }
+        }else if(type == IRContentOtherImageUrl){
+            if (_fileModel.otherImageUrls.count > row) {
+                isImageCell = YES;
+                content = _fileModel.otherImageUrls[row];
+            }
         }
         
         if (isImageCell) {
@@ -431,6 +442,8 @@
             return @"Original Spare Parts Packaging Photos";
         case IRContentExtraSparePartsPackageImageUrl://extra spare parts
             return @"Extra Spare Parts Packaging Photos";
+        case IRContentOtherImageUrl://other image
+            return @"**Other Images";
     }
     return @"unknown";
 }
@@ -498,13 +511,19 @@
         if (_fileModel.extraSparePartsPackageImageUrls.count > row) {
             [_fileModel.extraSparePartsPackageImageUrls removeObjectAtIndex:row];
         }
+    }else if(type == IRContentOtherImageUrl){
+        if (_fileModel.otherImageUrls.count > row) {
+            [_fileModel.otherImageUrls removeObjectAtIndex:row];
+        }
     }
     [self.tableView reloadData];
 }
 
 - (void)showImageSelectionPage{
     [self.view endEditing:YES];
-    UIAlertController* vc = [UIAlertController alertControllerWithTitle:@"从哪里选择照片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    
+    UIAlertController* vc = [UIAlertController alertControllerWithTitle:@"从哪里选择照片" message:@"" preferredStyle:UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
     UIAlertAction* albumAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self takeImageWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     }];
@@ -682,7 +701,7 @@
 
 - (void)insertImageToModel:(UIImage*)image{
     
-    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+//    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     
     NSString* fileName = [NSString stringWithFormat:@"image%@-%05d.png",[[NSDate date] M_d_DateString],arc4random()%100000];
     NSString* filePath = [[_fileModel draftRootDir] stringByAppendingPathComponent:fileName];
@@ -724,6 +743,9 @@
             break;
         case IRContentExtraSparePartsPackageImageUrl://extra spare parts
             [_fileModel.extraSparePartsPackageImageUrls addObject:fileName];
+            break;
+        case IRContentOtherImageUrl://extra spare parts
+            [_fileModel.otherImageUrls addObject:fileName];
             break;
         default:
             break;
