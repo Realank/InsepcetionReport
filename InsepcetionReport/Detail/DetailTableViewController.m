@@ -13,7 +13,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PreviewViewController.h"
 #import "GKImagePicker.h"
-@interface DetailTableViewController ()<IRCellInputChanged, UIImagePickerControllerDelegate,UINavigationControllerDelegate,GKImagePickerDelegate>
+
+@interface DetailTableViewController ()<IRCellInputChanged,IRCellAddImageDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate,GKImagePickerDelegate>
 @property (nonatomic, assign) IRContentType selectImageType;
 @property (nonatomic, strong) GKImagePicker *imagePicker;
 @end
@@ -141,6 +142,10 @@
             break;
     }
 //    [self.tableView reloadData];
+}
+-  (void)cellWantToAddImageWithCamera:(BOOL)isCamera forType:(IRContentType)type{
+    _selectImageType = type;
+    [self takeImageWithSourceType:isCamera? UIImagePickerControllerSourceTypeCamera:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
 }
 
 #pragma mark - Table view data source
@@ -390,12 +395,34 @@
             ((IRImageCell*)cell).imageUrl = imagePath;
         }else{
             cell = [IRAddActionCell cellWithTableView:tableView];
+            ((IRAddActionCell*)cell).delegate = self;
         }
     }
     
     
     cell.contentType = type;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 35;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 35)];
+    label.text = [@" " stringByAppendingString:[self tableView:self.tableView titleForHeaderInSection:section]];
+    if (section <= IRContentInspectedQuantity) {
+        label.backgroundColor = UIColorFromRGB(0xe3e3e3);
+    }else if (section <= IRContentSparePartsImageUrl){
+        label.backgroundColor = UIColorFromRGB(0xd8c3c3);
+    }else if (section <= IRContentLegViewImageUrl){
+        label.backgroundColor = UIColorFromRGB(0xcbddf4);
+    }else if (section <= IRContentExtraSparePartsPackageImageUrl){
+        label.backgroundColor = UIColorFromRGB(0xd1d2f2);
+    }else{
+        label.backgroundColor = UIColorFromRGB(0xb7a4bf);
+    }
+    return label;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -427,11 +454,11 @@
         case IRContentSparePartsImageUrl:
             return @"Spare Parts";
         case IRContentFrontViewImageUrl://front view
-            return @"Front View";
+            return @"Front Views";
         case IRContentSideViewImageUrl://side view
-            return @"Side View";
+            return @"Side Views";
         case IRContentBackViewImageUrl://back view
-            return @"Back View";
+            return @"Back Views";
         case IRContentLegViewImageUrl://leg view
             return @"LEGS/BASE";
         case IRContentPackageImageUrl://package view
@@ -450,10 +477,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([self cellTypeForIndexPath:indexPath] == IRCellTypeAdd) {
-        _selectImageType = indexPath.section;
-        [self showImageSelectionPage];
-    }
+//    if ([self cellTypeForIndexPath:indexPath] == IRCellTypeAdd) {
+//        _selectImageType = indexPath.section;
+//        [self showImageSelectionPage];
+//    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -549,6 +576,7 @@
         imagePicker.delegate = self;
         imagePicker.resizeableCropArea = YES;
         imagePicker.imagePickerController.sourceType = type;
+        imagePicker.imagePickerController.showsCameraControls = YES;
         _imagePicker = imagePicker;
         //先检查相机可用是否
         BOOL cameraIsAvailable = [self checkCamera];
@@ -618,52 +646,52 @@
     //相机可用
     return YES;
 }
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    
-    //当选择的类型是图片
-    if ([type isEqualToString:@"public.image"])
-    {
-        NSString *key = nil;
-        
-        if (picker.allowsEditing)
-        {
-            key = UIImagePickerControllerEditedImage;
-        }
-        else
-        {
-            key = UIImagePickerControllerOriginalImage;
-        }
-        //获取图片
-        UIImage *image = [info objectForKey:key];
-        
-//        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-//            // 固定方向
-////            image = [image fixOrientation];//这个方法是UIImage+Extras.h中方法
-//            //压缩图片质量
-//            
-//            
-//            
+//
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//{
+//    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+//    
+//    //当选择的类型是图片
+//    if ([type isEqualToString:@"public.image"])
+//    {
+//        NSString *key = nil;
+//        
+//        if (picker.allowsEditing)
+//        {
+//            key = UIImagePickerControllerEditedImage;
 //        }
-        
-        CGSize imageSize = image.size;
-        imageSize.height = 300;
-        imageSize.width = 300;
-        //压缩图片尺寸
-        image = [self imageWithImageSimple:image scaledToSize:imageSize];
-        image = [self reduceImageSize:image];
-        //上传到服务器
-        //[self doAddPhoto:image];
-        [self savePhoto:image];
-        [self insertImageToModel:image];
-        //关闭相册界面
-        [picker dismissViewControllerAnimated:YES completion:^{
-            
-        }];
-    }
-}
+//        else
+//        {
+//            key = UIImagePickerControllerOriginalImage;
+//        }
+//        //获取图片
+//        UIImage *image = [info objectForKey:key];
+//        
+////        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+////            // 固定方向
+//////            image = [image fixOrientation];//这个方法是UIImage+Extras.h中方法
+////            //压缩图片质量
+////            
+////            
+////            
+////        }
+//        
+//        CGSize imageSize = image.size;
+//        imageSize.height = 300;
+//        imageSize.width = 300;
+//        //压缩图片尺寸
+//        image = [self imageWithImageSimple:image scaledToSize:imageSize];
+//        image = [self reduceImageSize:image];
+//        //上传到服务器
+//        //[self doAddPhoto:image];
+//        [self savePhoto:image];
+//        [self insertImageToModel:image];
+//        //关闭相册界面
+//        [picker dismissViewControllerAnimated:YES completion:^{
+//            
+//        }];
+//    }
+//}
 
 
 
@@ -751,7 +779,9 @@
             break;
     }
     [self.tableView reloadData];
-
+    NSInteger rowCount = [self tableView:self.tableView numberOfRowsInSection:_selectImageType];
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:rowCount-1 inSection:_selectImageType];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
 //回调方法

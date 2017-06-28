@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "RLKBaseTableViewCell.h"
 
+@protocol IRCellAddImageDelegate <NSObject>
+
+- (void)cellWantToAddImageWithCamera:(BOOL)isCamera forType:(IRContentType)type;
+
+@end
+
 @interface IRAddActionCell : RLKBaseTableViewCell
+
+@property (nonatomic, weak) id<IRCellAddImageDelegate> delegate;
 
 @end

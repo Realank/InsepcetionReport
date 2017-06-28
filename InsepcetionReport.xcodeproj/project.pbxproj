@@ -22,6 +22,7 @@
 		8C094C531EF0EFF100118A91 /* IRAddActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C094C511EF0EFF100118A91 /* IRAddActionCell.m */; };
 		8C094C541EF0EFF100118A91 /* IRAddActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C094C521EF0EFF100118A91 /* IRAddActionCell.xib */; };
 		8C094C571EF0F03A00118A91 /* RLKBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C094C561EF0F03A00118A91 /* RLKBaseTableViewCell.m */; };
+		8C1A04EC1F03353B009F32BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C1A04EB1F03353B009F32BD /* Localizable.strings */; };
 		8C22FDD71EFB8DC400F50A71 /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C22FDCC1EFB8DC400F50A71 /* GKCropBorderView.m */; };
 		8C22FDD81EFB8DC400F50A71 /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C22FDCE1EFB8DC400F50A71 /* GKImageCropOverlayView.m */; };
 		8C22FDD91EFB8DC400F50A71 /* GKImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C22FDD01EFB8DC400F50A71 /* GKImageCropView.m */; };
@@ -36,7 +37,6 @@
 		8C269DE51EF24DCB004DE418 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C269DE31EF24DCB004DE418 /* HistoryViewController.m */; };
 		8C269DE61EF24DCB004DE418 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C269DE41EF24DCB004DE418 /* HistoryViewController.xib */; };
 		8C2C06E81EF8A9A7001798F8 /* LibXL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2C06E71EF8A9A7001798F8 /* LibXL.framework */; };
-		8C40DCA11EFB742C00F9B177 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C40DCA01EFB742C00F9B177 /* Localizable.strings */; };
 		8C84D2481EF8F87D006D094D /* UIImage+FixeOritation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */; };
 		8CD700881EFA6E3A00C3E33B /* template2.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 8CD700871EFA6E2D00C3E33B /* template2.xlsx */; };
 /* End PBXBuildFile section */
@@ -67,6 +67,7 @@
 		8C094C521EF0EFF100118A91 /* IRAddActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IRAddActionCell.xib; sourceTree = "<group>"; };
 		8C094C551EF0F03A00118A91 /* RLKBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLKBaseTableViewCell.h; sourceTree = "<group>"; };
 		8C094C561EF0F03A00118A91 /* RLKBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLKBaseTableViewCell.m; sourceTree = "<group>"; };
+		8C1A04EB1F03353B009F32BD /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		8C22FDCB1EFB8DC400F50A71 /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
 		8C22FDCC1EFB8DC400F50A71 /* GKCropBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKCropBorderView.m; sourceTree = "<group>"; };
 		8C22FDCD1EFB8DC400F50A71 /* GKImageCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropOverlayView.h; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		8C269DE41EF24DCB004DE418 /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		8C2C06E21EF8A74D001798F8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		8C2C06E71EF8A9A7001798F8 /* LibXL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LibXL.framework; sourceTree = "<group>"; };
-		8C40DCA01EFB742C00F9B177 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../../../../Desktop/Localizable.strings; sourceTree = "<group>"; };
 		8C84D2461EF8F87D006D094D /* UIImage+FixeOritation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixeOritation.h"; sourceTree = "<group>"; };
 		8C84D2471EF8F87D006D094D /* UIImage+FixeOritation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixeOritation.m"; sourceTree = "<group>"; };
 		8CD700871EFA6E2D00C3E33B /* template2.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = template2.xlsx; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 				8C094C281EF0CDC700118A91 /* Info.plist */,
 				8C094C251EF0CDC700118A91 /* LaunchScreen.storyboard */,
 				8C094C181EF0CDC700118A91 /* main.m */,
-				8C40DCA01EFB742C00F9B177 /* Localizable.strings */,
+				8C1A04EB1F03353B009F32BD /* Localizable.strings */,
 				8C269DD81EF20629004DE418 /* template.xlsx */,
 				8CD700871EFA6E2D00C3E33B /* template2.xlsx */,
 				8C2C06E21EF8A74D001798F8 /* PrefixHeader.pch */,
@@ -271,7 +271,7 @@
 				TargetAttributes = {
 					8C094C131EF0CDC700118A91 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 3Q553VZ29W;
+						DevelopmentTeam = 275X96KVEB;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -300,7 +300,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD700881EFA6E3A00C3E33B /* template2.xlsx in Resources */,
-				8C40DCA11EFB742C00F9B177 /* Localizable.strings in Resources */,
 				8C269DD91EF20DA3004DE418 /* template.xlsx in Resources */,
 				8C094C4F1EF0EFDC00118A91 /* IRImageCell.xib in Resources */,
 				8C094C3C1EF0E08500118A91 /* DetailTableViewController.xib in Resources */,
@@ -308,6 +307,7 @@
 				8C094C271EF0CDC700118A91 /* LaunchScreen.storyboard in Resources */,
 				8C269DD71EF20447004DE418 /* PreviewViewController.xib in Resources */,
 				8C094C241EF0CDC700118A91 /* Assets.xcassets in Resources */,
+				8C1A04EC1F03353B009F32BD /* Localizable.strings in Resources */,
 				8C094C541EF0EFF100118A91 /* IRAddActionCell.xib in Resources */,
 				8C094C4A1EF0EFCB00118A91 /* IRInputCell.xib in Resources */,
 				8C269DDF1EF24C79004DE418 /* HomeViewController.xib in Resources */,
@@ -466,7 +466,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
-				DEVELOPMENT_TEAM = 3Q553VZ29W;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 275X96KVEB;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -482,6 +483,7 @@
 				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ihealth.nurseapp.report2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -489,7 +491,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
-				DEVELOPMENT_TEAM = 3Q553VZ29W;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 275X96KVEB;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -505,6 +508,7 @@
 				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ihealth.nurseapp.report2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

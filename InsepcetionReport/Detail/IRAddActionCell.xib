@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,18 +20,42 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkd-gK-7wu">
-                        <rect key="frame" x="143.5" y="11" width="33" height="21"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                        <color key="textColor" red="0.1740702093" green="0.52312773469999996" blue="0.93836706879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSP-vl-ZLo">
+                        <rect key="frame" x="9" y="7" width="100.5" height="30"/>
+                        <state key="normal" title="Album"/>
+                        <connections>
+                            <action selector="albumAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Men-bW-6se"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0c-RE-zNx">
+                        <rect key="frame" x="109.5" y="8" width="1" height="28"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="kH6-Cf-Pwb"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaR-Bc-fXg">
+                        <rect key="frame" x="110.5" y="7" width="201.5" height="30"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <state key="normal" title="Camera"/>
+                        <connections>
+                            <action selector="cameraAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mZD-27-zuM"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Gkd-gK-7wu" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Vk8-bA-DWB"/>
-                    <constraint firstItem="Gkd-gK-7wu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hWV-Cr-4B6"/>
+                    <constraint firstItem="QaR-Bc-fXg" firstAttribute="leading" secondItem="f0c-RE-zNx" secondAttribute="trailing" id="2Fq-tD-lXB"/>
+                    <constraint firstItem="f0c-RE-zNx" firstAttribute="leading" secondItem="VSP-vl-ZLo" secondAttribute="trailing" id="PbD-Mb-2AP"/>
+                    <constraint firstAttribute="topMargin" secondItem="f0c-RE-zNx" secondAttribute="top" id="UDz-qE-lcd"/>
+                    <constraint firstItem="VSP-vl-ZLo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="bHO-ej-rGQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="QaR-Bc-fXg" secondAttribute="trailing" id="bNt-3R-Klr"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="f0c-RE-zNx" secondAttribute="bottom" id="f6U-xy-0Ma"/>
+                    <constraint firstItem="VSP-vl-ZLo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ir2-QF-dZO"/>
+                    <constraint firstItem="QaR-Bc-fXg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jRa-st-2C0"/>
+                    <constraint firstItem="VSP-vl-ZLo" firstAttribute="width" secondItem="QaR-Bc-fXg" secondAttribute="width" multiplier="0.5" id="up7-TK-GT9"/>
                 </constraints>
             </tableViewCellContentView>
+            <point key="canvasLocation" x="-224" y="-15"/>
         </tableViewCell>
     </objects>
 </document>

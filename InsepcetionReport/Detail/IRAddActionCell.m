@@ -8,6 +8,7 @@
 
 #import "IRAddActionCell.h"
 
+
 @implementation IRAddActionCell
 
 - (void)awakeFromNib {
@@ -17,6 +18,16 @@
 
 + (CGFloat)cellHeight{
     return 44.0;
+}
+- (IBAction)albumAction:(id)sender {
+    if (_delegate) {
+        [_delegate cellWantToAddImageWithCamera:NO forType:self.contentType];
+    }
+}
+- (IBAction)cameraAction:(id)sender {
+    if (_delegate) {
+        [_delegate cellWantToAddImageWithCamera:YES forType:self.contentType];
+    }
 }
 
 @end
