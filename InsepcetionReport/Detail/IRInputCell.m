@@ -28,6 +28,29 @@
     return 60;
 }
 
+- (void)setContentType:(IRContentType)contentType{
+    [super setContentType:contentType];
+    switch (contentType) {
+        case IRContentsupplier:
+        case IRContentCheckCharger:
+        case IRContentColor:
+            _inputTF.keyboardType = UIKeyboardTypeASCIICapable;
+            break;
+        case IRContentdateString:
+        case IRContentPONumber:
+        case IRContentItemNum:
+        case IRContentOrderQuantity:
+        case IRContentFinishedQuantity:
+        case IRContentInspectedQuantity:
+            _inputTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            break;
+        default:
+            _inputTF.keyboardType = UIKeyboardTypeDefault;
+            break;
+    }
+    
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     NSString* content = textField.text;
     content = [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

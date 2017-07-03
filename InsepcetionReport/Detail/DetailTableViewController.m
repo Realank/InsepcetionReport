@@ -576,7 +576,6 @@
         imagePicker.delegate = self;
         imagePicker.resizeableCropArea = YES;
         imagePicker.imagePickerController.sourceType = type;
-        imagePicker.imagePickerController.showsCameraControls = YES;
         _imagePicker = imagePicker;
         //先检查相机可用是否
         BOOL cameraIsAvailable = [self checkCamera];

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,18 +16,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dnQ-MD-WTH">
-                        <rect key="frame" x="8" y="14" width="304" height="30"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dnQ-MD-WTH">
+                        <rect key="frame" x="8" y="8" width="304" height="43.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="dnQ-MD-WTH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1LF-2C-qLW"/>
+                    <constraint firstItem="dnQ-MD-WTH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="N7K-vc-ZuD"/>
+                    <constraint firstAttribute="bottom" secondItem="dnQ-MD-WTH" secondAttribute="bottom" constant="8" id="aA3-la-c5H"/>
                     <constraint firstAttribute="leadingMargin" secondItem="dnQ-MD-WTH" secondAttribute="leading" id="dwA-Eg-qZj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="dnQ-MD-WTH" secondAttribute="trailing" id="yeF-b2-k5O"/>
                 </constraints>
